@@ -1,10 +1,10 @@
-### Chapter 1: Python Deep Dive & Idiomatic Code
+# Chapter 1: (Python) Deep Dive & Idiomatic Code
 
 **Estimated Time:** 10 hours
 
 **Goal:** To solidify understanding of fundamental Python concepts and introduce advanced features, focusing on writing clean, efficient, and "Pythonic" code.
 
-**1.1: Review: Data Structures & Control Flow**
+## **1.1 Data Structures & Control Flow**
 
 - **Objective:** Quickly refresh core data structures and control flow mechanisms.
     
@@ -35,7 +35,7 @@
     ```
     
 
-**1.2: Functions Deep Dive**
+## **1.2 Functions Deep Dive**
 
 - **Objective:** Understand function scope rules, closures, and flexible argument handling.
     
@@ -84,7 +84,7 @@
     ```
     
 
-**1.3: Object-Oriented Programming (OOP) Revisited**
+## **1.3 Object-Oriented Programming (OOP) Revisited**
 
 - **Objective:** Solidify OOP concepts and understand the role of special ("dunder") methods.
     
@@ -227,7 +227,7 @@
     ```
     
 
-**1.4: Decorators**
+## **1.4 Decorators**
 
 - **Objective:** Understand how decorators work conceptually, why they are useful, and how to implement custom ones for common tasks like logging or timing.
     
@@ -307,7 +307,7 @@
     ```
     
 
-**1.5: Generators and Iterators**
+## **1.5 Generators and Iterators**
 
 - **Objective:** Learn how generators provide memory-efficient ways to create iterables, especially for large datasets.
     
@@ -374,7 +374,7 @@
     ```
     
 
-**1.6: Context Managers**
+## **1.6 Context Managers**
 
 - **Objective:** Understand how the `with` statement simplifies resource management (files, network connections, locks).
     
@@ -436,7 +436,7 @@
     ```
     
 
-**1.7: Advanced Error Handling**
+## **1.7 Advanced Error Handling**
 
 - **Objective:** Learn to create and use custom exceptions for more specific error reporting.
     
@@ -523,7 +523,7 @@
     ```
     
 
-**1.8: Pythonic Code**
+## **1.8 Pythonic Code**
 
 - **Objective:** Embrace Python's idioms for more readable, concise, and efficient code.
     
@@ -607,7 +607,7 @@
     ```
     
 
-**1.9: Style Guides & Linters**
+## **1.9 Style Guides & Linters**
 
 - **Objective:** Understand the importance of consistent code style and how tools can help enforce it.
     
@@ -650,7 +650,7 @@
     ```
     
 
-**1.10: Naming Conventions and Code Readability**
+## **1.10 Naming Conventions and Code Readability**
 
 - **Objective:** Emphasize the critical role of clear, descriptive naming in writing understandable code.
     

@@ -1,4 +1,4 @@
-## Chapter 1 Project: Refactoring and Enhancing a Data Processor
+# Chapter 1 Project: Refactoring and Enhancing a Data Processor
 
 **Goal:** Apply the concepts learned in Chapter 1 (Pythonic code, OOP, error handling, context managers, decorators, testing) to refactor, extend, and test a simple data processing script.
 
