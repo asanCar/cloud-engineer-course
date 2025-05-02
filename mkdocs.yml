@@ -1,0 +1,12 @@
+site_name: Cloud Engineer course
+nav:
+  - Table of contents: index.md
+  - Module 1: 
+    - Chapter 1: module_1/chapter_1.md
+    - Chapter 1 Test: module_1/chapter_1_quiz.md
+theme: 
+  name: material
+markdown_extensions:
+ - admonition
+ - pymdownx.superfences
+ - pymdownx.details
