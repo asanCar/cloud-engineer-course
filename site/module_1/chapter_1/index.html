@@ -1,0 +1,1500 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../..">
+      
+      
+        <link rel="next" href="../chapter_1_quiz/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.12">
+    
+    
+      
+        <title>Content - Cloud Engineer course</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.2afb09e1.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-1-python-deep-dive-idiomatic-code" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Cloud Engineer course" class="md-header__button md-logo" aria-label="Cloud Engineer course" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Cloud Engineer course
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Content
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Cloud Engineer course" class="md-nav__button md-logo" aria-label="Cloud Engineer course" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Cloud Engineer course
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Table of contents
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Module 1 - Advanced Programming & Best Practices
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Module 1 - Advanced Programming & Best Practices
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 - (Python) Language Deep Dive & Idiomatic Code
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            Chapter 1 - (Python) Language Deep Dive & Idiomatic Code
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Content
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Content
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#11-data-structures-control-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 Data Structures &amp; Control Flow
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-functions-deep-dive" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 Functions Deep Dive
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-object-oriented-programming-oop-revisited" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3 Object-Oriented Programming (OOP) Revisited
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-decorators" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4 Decorators
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-generators-and-iterators" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.5 Generators and Iterators
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-context-managers" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.6 Context Managers
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-advanced-error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.7 Advanced Error Handling
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#18-pythonic-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.8 Pythonic Code
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#19-style-guides-linters" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.9 Style Guides &amp; Linters
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#110-naming-conventions-and-code-readability" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.10 Naming Conventions and Code Readability
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter_1_quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quiz
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter_1_exercise/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Exercises
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#11-data-structures-control-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 Data Structures &amp; Control Flow
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-functions-deep-dive" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 Functions Deep Dive
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-object-oriented-programming-oop-revisited" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3 Object-Oriented Programming (OOP) Revisited
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-decorators" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4 Decorators
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-generators-and-iterators" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.5 Generators and Iterators
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-context-managers" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.6 Context Managers
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-advanced-error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.7 Advanced Error Handling
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#18-pythonic-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.8 Pythonic Code
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#19-style-guides-linters" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.9 Style Guides &amp; Linters
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#110-naming-conventions-and-code-readability" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.10 Naming Conventions and Code Readability
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="chapter-1-python-deep-dive-idiomatic-code">Chapter 1: (Python) Deep Dive &amp; Idiomatic Code</h1>
+<p><strong>Estimated Time:</strong> 10 hours</p>
+<p><strong>Goal:</strong> To solidify understanding of fundamental Python concepts and introduce advanced features, focusing on writing clean, efficient, and "Pythonic" code.</p>
+<h2 id="11-data-structures-control-flow"><strong>1.1 Data Structures &amp; Control Flow</strong></h2>
+<ul>
+<li>
+<p><strong>Objective:</strong> Quickly refresh core data structures and control flow mechanisms.</p>
+</li>
+<li>
+<p><strong>Topics:</strong></p>
+<ul>
+<li>
+<p><strong>Lists:</strong> Methods (<code>append</code>, <code>extend</code>, <code>insert</code>, <code>remove</code>, <code>pop</code>, <code>sort</code>), slicing, list comprehensions (brief intro - covered more in 1.8).</p>
+</li>
+<li>
+<p><strong>Dictionaries:</strong> Key-value pairs, methods (<code>keys</code>, <code>values</code>, <code>items</code>, <code>get</code>, <code>pop</code>), dictionary comprehensions (brief intro).</p>
+</li>
+<li>
+<p><strong>Sets:</strong> Unordered unique elements, methods (<code>add</code>, <code>remove</code>, <code>union</code>, <code>intersection</code>, <code>difference</code>), use cases (membership testing, removing duplicates).</p>
+</li>
+<li>
+<p><strong>Tuples:</strong> Immutable sequences, packing/unpacking, use cases (dictionary keys, returning multiple values).</p>
+</li>
+<li>
+<p><strong>Control Flow:</strong> <code>if</code>/<code>elif</code>/<code>else</code>, <code>for</code> loops (iterating over sequences, <code>range</code>), <code>while</code> loops, <code>break</code>, <code>continue</code>, <code>pass</code>.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Example Snippet (Tuple Unpacking):</strong></p>
+<div class="highlight"><pre><span></span><code># --- Example 1: Basic Tuple Unpacking ---
+point = (10, 20)
+x, y = point # Unpacking
+print(f&quot;x: {x}, y: {y}&quot;)
+
+# --- Example 2: Unpacking in Loops ---
+coordinates = [(0, 0), (1, 1), (2, 4)]
+for x_coord, y_coord in coordinates: # Unpacking in loops
+    print(f&quot;Processing point: ({x_coord}, {y_coord})&quot;)
+</code></pre></div>
+</li>
+</ul>
+<h2 id="12-functions-deep-dive"><strong>1.2 Functions Deep Dive</strong></h2>
+<ul>
+<li>
+<p><strong>Objective:</strong> Understand function scope rules, closures, and flexible argument handling.</p>
+</li>
+<li>
+<p><strong>Topics:</strong></p>
+<ul>
+<li>
+<p><strong>Scope (LEGB Rule):</strong> Local, Enclosing function locals, Global, Built-in. How Python searches for names.</p>
+</li>
+<li>
+<p><strong>Closures:</strong> Functions that "remember" their enclosing lexical scope, even when the enclosing function has finished executing. Practical examples (e.g., factory functions).</p>
+</li>
+<li>
+<p><strong>Argument Packing/Unpacking:</strong></p>
+<ul>
+<li>
+<p><code>*args</code>: Collects positional arguments into a tuple.</p>
+</li>
+<li>
+<p><code>**kwargs</code>: Collects keyword arguments into a dictionary.</p>
+</li>
+<li>
+<p>Using <code>*</code> and <code>**</code> when <em>calling</em> functions to unpack iterables/dictionaries.</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Example Snippet (Closure &amp; *args/</strong>kwargs):**</p>
+<div class="highlight"><pre><span></span><code># --- Example 1: Closure ---
+def outer_function(msg):
+    # msg is in the enclosing scope
+    def inner_function():
+        # inner_function &quot;closes over&quot; msg
+        print(msg)
+    return inner_function # Return the inner function
+
+hello_func = outer_function(&quot;Hello&quot;)
+hello_func() # Output: Hello
+
+# --- Example 2: *args and **kwargs ---
+def process_data(id, *values, **options):
+    print(f&quot;Processing ID: {id}&quot;)
+    print(f&quot;Values: {values}&quot;) # Tuple
+    print(f&quot;Options: {options}&quot;) # Dictionary
+    if options.get(&quot;verbose&quot;, False):
+         print(&quot;Verbose mode enabled.&quot;)
+
+process_data(101, &#39;a&#39;, &#39;b&#39;, &#39;c&#39;, verbose=True, retries=3)
+# Output:
+# Processing ID: 101
+# Values: (&#39;a&#39;, &#39;b&#39;, &#39;c&#39;)
+# Options: {&#39;verbose&#39;: True, &#39;retries&#39;: 3}
+# Verbose mode enabled.
+</code></pre></div>
+</li>
+</ul>
+<h2 id="13-object-oriented-programming-oop-revisited"><strong>1.3 Object-Oriented Programming (OOP) Revisited</strong></h2>
+<ul>
+<li>
+<p><strong>Objective:</strong> Solidify OOP concepts and understand the role of special ("dunder") methods.</p>
+</li>
+<li>
+<p><strong>Topics:</strong></p>
+<ul>
+<li>
+<p><strong>Classes and Objects:</strong> Review of basic definition, instantiation.</p>
+</li>
+<li>
+<p><strong>Inheritance:</strong> Single and multiple inheritance (Method Resolution Order - MRO), <code>super()</code>.</p>
+</li>
+<li>
+<p><strong>Polymorphism:</strong> Duck typing ("If it walks like a duck and quacks like a duck...").</p>
+</li>
+<li>
+<p><strong>Encapsulation:</strong> Using naming conventions (<code>_protected</code>, <code>__private</code> name mangling) - Python relies on convention more than strict enforcement.</p>
+</li>
+<li>
+<p><strong>Dunder Methods:</strong></p>
+<ul>
+<li>
+<p><code>__init__(self, ...)</code>: Constructor.</p>
+</li>
+<li>
+<p><code>__str__(self)</code>: User-friendly string representation (<code>str()</code>).</p>
+</li>
+<li>
+<p><code>__repr__(self)</code>: Developer-friendly string representation (<code>repr()</code>). Aim for unambiguous representation.</p>
+</li>
+<li>
+<p><code>__len__(self)</code>: Length (<code>len()</code>).</p>
+</li>
+<li>
+<p><code>__eq__(self, other)</code>: Equality comparison (<code>==</code>).</p>
+</li>
+<li>
+<p>Others (<code>__add__</code>, <code>__getitem__</code>, etc.) as needed.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Properties:</strong> Using <code>@property</code> decorator for getter methods, <code>@&lt;property_name&gt;.setter</code> for setters - provides controlled access to attributes.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Example Snippet (Inheritance, Dunder Methods &amp; Properties Combined):</strong></p>
+<div class="highlight"><pre><span></span><code># --- Example Combined OOP Concepts ---
+
+# Base Class: Publication
+class Publication:
+    &quot;&quot;&quot;Represents a generic publication with a title and price.&quot;&quot;&quot;
+    def __init__(self, title, price):
+        self.title = title
+        self._price = price # Use underscore for intended protected attribute
+
+    @property
+    def price(self):
+        &quot;&quot;&quot;Getter for the price using property decorator.&quot;&quot;&quot;
+        # Could add logic here, e.g., currency conversion
+        return self._price
+
+    @price.setter
+    def price(self, value):
+        &quot;&quot;&quot;Setter for the price with validation.&quot;&quot;&quot;
+        if value &lt; 0:
+            raise ValueError(&quot;Price cannot be negative.&quot;)
+        self._price = value
+
+    # Dunder method for user-friendly string representation
+    def __str__(self):
+        return f&quot;{self.title} (Price: ${self.price:.2f})&quot;
+
+    # Dunder method for developer-friendly representation
+    def __repr__(self):
+        # Should ideally be unambiguous and allow recreating the object
+        return f&quot;{self.__class__.__name__}(title=&#39;{self.title}&#39;, price={self.price})&quot;
+
+    # Dunder method for equality comparison
+    def __eq__(self, other):
+        if not isinstance(other, Publication):
+            return NotImplemented # Indicate comparison not supported for this type
+        # Compare based on title and price for this example
+        return self.title == other.title and self.price == other.price
+
+# Derived Class: Book (inherits from Publication)
+class Book(Publication):
+    &quot;&quot;&quot;Represents a book, inheriting from Publication and adding an author.&quot;&quot;&quot;
+    def __init__(self, title, author, price):
+        # Call the parent class&#39;s __init__ method using super()
+        super().__init__(title, price)
+        self.author = author
+
+    # Override __str__ to include the author
+    def __str__(self):
+        # Reuse parent&#39;s __str__ or format differently
+        # return f&#39;&quot;{self.title}&quot; by {self.author} (Price: ${self.price:.2f})&#39;
+        # Alternative: Reuse parent&#39;s logic via super() if desired, then add more
+        base_str = super().__str__()
+        return f&#39;&quot;{self.title}&quot; by {self.author} - [{base_str}]&#39;
+
+
+    # Override __repr__ to include the author
+    def __repr__(self):
+        # Recreate the specific Book object
+        return f&quot;Book(title=&#39;{self.title}&#39;, author=&#39;{self.author}&#39;, price={self.price})&quot;
+
+    # Override __eq__ to include author comparison
+    def __eq__(self, other):
+        if not isinstance(other, Book):
+            return NotImplemented
+        # Use parent&#39;s __eq__ via super() for title/price and add author check
+        return super().__eq__(other) and self.author == other.author
+
+    # Method specific to Book
+    def read_excerpt(self):
+        print(f&quot;Reading an excerpt from &#39;{self.title}&#39; by {self.author}...&quot;)
+
+
+# --- Example Usage: Combined Concepts ---
+print(&quot;--- Creating Instances ---&quot;)
+generic_pub = Publication(&quot;Generic Magazine&quot;, 5.99)
+book1 = Book(&quot;The Pragmatic Programmer&quot;, &quot;Andy Hunt&quot;, 29.95)
+book2 = Book(&quot;Clean Code&quot;, &quot;Robert C. Martin&quot;, 35.50)
+book3 = Book(&quot;The Pragmatic Programmer&quot;, &quot;Andy Hunt&quot;, 29.95) # Same as book1
+
+print(&quot;\n--- Testing Dunder Methods (__str__, __repr__) ---&quot;)
+print(f&quot;Generic Pub (__str__): {generic_pub}&quot;)
+print(f&quot;Book 1 (__str__):      {book1}&quot;)
+print(f&quot;Generic Pub (__repr__): {repr(generic_pub)}&quot;)
+print(f&quot;Book 1 (__repr__):      {repr(book1)}&quot;)
+
+print(&quot;\n--- Testing Property ---&quot;)
+print(f&quot;Book 1 original price: ${book1.price:.2f}&quot;) # Getter
+book1.price = 32.00 # Setter
+print(f&quot;Book 1 new price: ${book1.price:.2f}&quot;)
+try:
+    book1.price = -10 # Setter validation
+except ValueError as e:
+    print(f&quot;Error setting price: {e}&quot;)
+
+print(&quot;\n--- Testing Inheritance &amp; Overriding ---&quot;)
+book1.read_excerpt() # Method specific to Book
+# generic_pub.read_excerpt() # Would cause AttributeError
+
+print(&quot;\n--- Testing Equality (__eq__) ---&quot;)
+print(f&quot;book1 == book2: {book1 == book2}&quot;) # False
+print(f&quot;book1 == book3: {book1 == book3}&quot;) # True
+print(f&quot;book1 == generic_pub: {book1 == generic_pub}&quot;) # False (different types handled by isinstance check)
+
+print(&quot;\n--- Testing isinstance ---&quot;)
+print(f&quot;Is book1 a Book? {isinstance(book1, Book)}&quot;)           # True
+print(f&quot;Is book1 a Publication? {isinstance(book1, Publication)}&quot;) # True
+print(f&quot;Is generic_pub a Book? {isinstance(generic_pub, Book)}&quot;) # False
+</code></pre></div>
+</li>
+</ul>
+<h2 id="14-decorators"><strong>1.4 Decorators</strong></h2>
+<ul>
+<li>
+<p><strong>Objective:</strong> Understand how decorators work conceptually, why they are useful, and how to implement custom ones for common tasks like logging or timing.</p>
+</li>
+<li>
+<p><strong>Topics:</strong></p>
+<ul>
+<li>
+<p><strong>What are Decorators?</strong> Syntactic sugar (<code>@</code>) for a pattern where a function takes another function as input, adds some functionality (wraps it), and returns the modified function. Think of it like wrapping a gift – you add wrapping paper (extra functionality) without changing the gift (original function) itself.</p>
+</li>
+<li>
+<p><strong>Why Use Decorators?</strong></p>
+<ul>
+<li>
+<p><em>Code Reusability:</em> Apply the same extra logic (like logging, timing, access control) to multiple functions without repeating code.</p>
+</li>
+<li>
+<p><em>Separation of Concerns:</em> Keep the core logic of your function separate from cross-cutting concerns (like logging or performance monitoring).</p>
+</li>
+<li>
+<p><em>Readability:</em> The <code>@decorator_name</code> syntax clearly indicates that a function's behavior is being modified.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Functions as First-Class Objects:</strong> Decorators rely on the fact that functions in Python can be passed as arguments, returned from other functions, and assigned to variables.</p>
+</li>
+<li>
+<p><strong>How Decorators Work (Conceptual Steps):</strong></p>
+<ol>
+<li>
+<p>You define a function (e.g., <code>my_decorator</code>) that accepts another function (<code>func</code>) as an argument.</p>
+</li>
+<li>
+<p>Inside <code>my_decorator</code>, you define a <em>nested</em> function (often called <code>wrapper</code> or <code>inner</code>). This <code>wrapper</code> function will contain the extra logic <em>plus</em> a call to the original function <code>func</code>.</p>
+</li>
+<li>
+<p><code>my_decorator</code> returns the <code>wrapper</code> function.</p>
+</li>
+<li>
+<p>When you use <code>@my_decorator</code> above another function definition (e.g., <code>say_hello</code>), Python essentially does this: <code>say_hello = my_decorator(say_hello)</code>. Now, <code>say_hello</code> actually refers to the <code>wrapper</code> function returned by the decorator.</p>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>Using <code>functools.wraps</code>:</strong> Essential for preserving the original function's metadata (like its name <code>__name__</code> and docstring <code>__doc__</code>). Without it, the decorated function would appear to be the <code>wrapper</code> function, which can confuse debugging and documentation tools.</p>
+</li>
+<li>
+<p><strong>Decorators with Arguments:</strong> Requires an extra layer of nesting. The outer function takes the decorator arguments and returns the actual decorator function, which then takes the target function and returns the wrapper.</p>
+</li>
+<li>
+<p><strong>Class-Based Decorators:</strong> You can also use classes to create decorators, typically by implementing the <code>__init__</code> and <code>__call__</code> methods. The instance is initialized, and then <code>__call__</code> is invoked when the decorated function is called.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Example Snippet (Simple Timer Decorator - Explained):</strong></p>
+<div class="highlight"><pre><span></span><code># --- Example 1: Timer Decorator ---
+import functools
+import time
+
+# 1. Define the decorator function: takes the target function &#39;func&#39;
+def timer(func):
+    # 3. Use functools.wraps to copy metadata from &#39;func&#39; to &#39;wrapper&#39;
+    @functools.wraps(func)
+    # 2. Define the inner &#39;wrapper&#39; function: takes the same args as &#39;func&#39;
+    def wrapper(*args, **kwargs):
+        print(f&quot;Entering {func.__name__!r}...&quot;) # Added entry log
+        start_time = time.perf_counter()
+        # 4. Call the original function &#39;func&#39; with its arguments
+        result = func(*args, **kwargs)
+        end_time = time.perf_counter()
+        run_time = end_time - start_time
+        print(f&quot;Finished {func.__name__!r} in {run_time:.4f} secs&quot;) # Original timing log
+        # 5. Return the result of the original function
+        return result
+    # 6. The decorator returns the &#39;wrapper&#39; function
+    return wrapper
+
+# 7. Apply the decorator using @ syntax
+@timer
+def complex_calculation(n):
+    &quot;&quot;&quot;Simulates a time-consuming task.&quot;&quot;&quot;
+    total = 0
+    for i in range(n):
+        total += i*i
+    return total
+
+# 8. Calling complex_calculation now actually calls the &#39;wrapper&#39;
+result = complex_calculation(1000000)
+# Output:
+# Entering &#39;complex_calculation&#39;...
+# Finished &#39;complex_calculation&#39; in X.XXXX secs (time will vary)
+
+print(f&quot;Result: {result}&quot;)
+print(complex_calculation.__name__) # Output: complex_calculation (thanks to wraps)
+print(complex_calculation.__doc__) # Output: Simulates a time-consuming task. (thanks to wraps)
+</code></pre></div>
+</li>
+</ul>
+<h2 id="15-generators-and-iterators"><strong>1.5 Generators and Iterators</strong></h2>
+<ul>
+<li>
+<p><strong>Objective:</strong> Learn how generators provide memory-efficient ways to create iterables, especially for large datasets.</p>
+</li>
+<li>
+<p><strong>Topics:</strong></p>
+<ul>
+<li>
+<p><strong>Iterator Protocol:</strong> Defines how iteration works via <code>__iter__()</code> (returns the iterator object itself) and <code>__next__()</code> (returns the next item). <code>StopIteration</code> exception is raised when no more items are available.</p>
+</li>
+<li>
+<p><strong>Generators:</strong> Functions using <code>yield</code> to produce a sequence of values lazily. State is saved between calls.</p>
+</li>
+<li>
+<p><strong>Generator Expressions:</strong> Concise syntax similar to list comprehensions but creating generators <code>(x*x for x in range(10))</code>.</p>
+</li>
+<li>
+<p>Use cases: Processing large files, infinite sequences, pipelines.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Example Snippet (Generator for Fibonacci):</strong></p>
+<div class="highlight"><pre><span></span><code># --- Example 1: Fibonacci Generator ---
+def fibonacci_generator(limit):
+    a, b = 0, 1
+    while a &lt; limit:
+        yield a # Pauses execution and returns value
+        a, b = b, a + b # Resumes here on next call
+
+# Using the generator
+print(&quot;Fibonacci sequence:&quot;)
+for number in fibonacci_generator(100):
+    print(number, end=&quot; &quot;) # Output: 0 1 1 2 3 5 8 13 21 34 55 89
+print(&quot;\n&quot;)
+
+# --- Example 2: Generator Expression ---
+squares = (x*x for x in range(5))
+print(type(squares)) # &lt;class &#39;generator&#39;&gt;
+for sq in squares:
+    print(sq, end=&quot; &quot;) # Output: 0 1 4 9 16
+print()
+</code></pre></div>
+</li>
+<li>
+<p><strong>Example Snippet (Simple Generator Pipeline):</strong></p>
+<div class="highlight"><pre><span></span><code># --- Example 3: Simple Generator Pipeline ---
+# 0. Our initial data
+numbers = [1, 2, 3, 4, 5, 6, 7, 8]
+
+# 1. First pipeline step: Square the numbers
+def square_numbers(nums):
+  for n in nums:
+    yield n * n
+
+# 2. Second pipeline step: Filter for even numbers
+def filter_even(squared_nums):
+  for n in squared_nums:
+    if n % 2 == 0:
+      yield n
+
+# 3. Build the pipeline by chaining the generators
+pipeline = filter_even(square_numbers(numbers))
+
+# 4. Pull data through the pipeline
+print(&quot;Starting pipeline execution...&quot;)
+for even_square in pipeline:
+  print(f&quot;PIPELINE RESULT: {even_square}&quot;)
+print(&quot;Pipeline finished.&quot;)
+</code></pre></div>
+</li>
+</ul>
+<h2 id="16-context-managers"><strong>1.6 Context Managers</strong></h2>
+<ul>
+<li>
+<p><strong>Objective:</strong> Understand how the <code>with</code> statement simplifies resource management (files, network connections, locks).</p>
+</li>
+<li>
+<p><strong>Topics:</strong></p>
+<ul>
+<li>
+<p><strong>The need for cleanup (<code>try...finally</code>):</strong> Manually managing resources (like closing files or releasing locks) with <code>try...finally</code> is necessary but verbose and error-prone; it's easy to forget the <code>finally</code> block or handle exceptions incorrectly.</p>
+</li>
+<li>
+<p><strong>The <code>with</code> statement:</strong> Provides a cleaner, more reliable way to ensure that setup and teardown actions (like opening/closing a resource) happen automatically, even if errors occur within the block.</p>
+</li>
+<li>
+<p><strong>Context Manager Protocol:</strong> This is what makes the <code>with</code> statement work. Requires an object to have two special methods:</p>
+<ul>
+<li>
+<p><code>__enter__(self)</code>: Executed at the start of the <code>with</code> block. Often returns the resource itself (like the file object) or <code>self</code>.</p>
+</li>
+<li>
+<p><code>__exit__(self, exc_type, exc_val, exc_tb)</code>: Executed when exiting the <code>with</code> block (normally or due to an exception). It receives exception details (type, value, traceback) if any occurred and performs the cleanup. Returning <code>True</code> from <code>__exit__</code> suppresses the exception.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Using <code>contextlib.contextmanager</code>:</strong> A decorator that lets you create a context manager more easily using a generator function with a single <code>yield</code>. Code before <code>yield</code> acts as <code>__enter__</code>, code after <code>yield</code> (in a <code>finally</code> block) acts as <code>__exit__</code>.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Example Snippet (File Handling &amp; Custom Context Manager):</strong></p>
+<div class="highlight"><pre><span></span><code># --- Example 1: Standard file handling with &#39;with&#39; ---
+try:
+    with open(&quot;example.txt&quot;, &quot;w&quot;) as f:
+        f.write(&quot;Hello, context managers!\n&quot;)
+        # Simulate an error
+        # raise ValueError(&quot;Something went wrong&quot;)
+    # File is automatically closed here, even if an error occurs inside the block
+    print(&quot;File &#39;example.txt&#39; written and closed.&quot;)
+except Exception as e:
+    print(f&quot;An error occurred: {e}&quot;)
+    # File is still closed if it was opened
+
+# --- Example 2: Custom context manager using contextlib ---
+import contextlib
+import time
+
+@contextlib.contextmanager
+def simple_timer(label=&quot;Execution&quot;):
+    &quot;&quot;&quot;A simple context manager to time a block of code.&quot;&quot;&quot;
+    start = time.perf_counter()
+    try:
+        yield # Execution pauses here, control goes to the &#39;with&#39; block
+    finally:
+        # Cleanup code runs regardless of exceptions in the &#39;with&#39; block
+        end = time.perf_counter()
+        print(f&quot;{label} took {end - start:.4f} seconds&quot;)
+
+# Using the custom timer context manager
+with simple_timer(&quot;Block Timer&quot;):
+    print(&quot;Inside the timed block...&quot;)
+    time.sleep(0.5) # Simulate work
+    print(&quot;...block finished.&quot;)
+
+# Expected Output:
+# File &#39;example.txt&#39; written and closed.
+# Inside the timed block...
+# ...block finished.
+# Block Timer took 0.5XXX seconds
+</code></pre></div>
+</li>
+</ul>
+<h2 id="17-advanced-error-handling"><strong>1.7 Advanced Error Handling</strong></h2>
+<ul>
+<li>
+<p><strong>Objective:</strong> Learn to create and use custom exceptions for more specific error reporting.</p>
+</li>
+<li>
+<p><strong>Topics:</strong></p>
+<ul>
+<li>
+<p><strong><code>try...except</code>:</strong> The fundamental block for handling errors. Code that might raise an exception goes in the <code>try</code> part, and code to run if a specific error occurs goes in the <code>except</code> part.</p>
+</li>
+<li>
+<p><strong>Handling specific exception types vs. broad <code>Exception</code>:</strong> It's best practice to catch <em>specific</em> errors you anticipate (like <code>ValueError</code> or <code>FileNotFoundError</code>). Catching a broad <code>Exception</code> can hide bugs or catch errors you didn't intend to handle (like <code>SystemExit</code> or <code>KeyboardInterrupt</code>), making debugging harder.</p>
+</li>
+<li>
+<p><code>else</code> block: Code that runs only if no exceptions occurred in the <code>try</code> block.</p>
+</li>
+<li>
+<p><code>finally</code> block: Code that runs <em>always</em> (cleanup).</p>
+</li>
+<li>
+<p><code>raise</code> is used to raise Exceptions.</p>
+</li>
+<li>
+<p>Custom exception classes can be created inheriting from <code>Exception</code> or more specific built-ins.</p>
+</li>
+<li>
+<p><strong>Chaining exceptions (<code>raise NewException from original_exception</code>):</strong> This preserves the original error context, making it easier to debug the root cause when wrapping exceptions.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Example Snippet (Custom Exception &amp; Chaining):</strong></p>
+<div class="highlight"><pre><span></span><code># --- Example 1: Custom Exception &amp; Chaining ---
+class InsufficientFundsError(Exception):
+    &quot;&quot;&quot;Custom exception for bank account operations.&quot;&quot;&quot;
+    def __init__(self, requested, available):
+        self.requested = requested
+        self.available = available
+        super().__init__(f&quot;Attempted to withdraw {requested}, but only {available} available.&quot;)
+
+def withdraw(balance, amount):
+    &quot;&quot;&quot;Withdraws amount if possible, raises errors otherwise.&quot;&quot;&quot;
+    if amount &lt;= 0:
+        raise ValueError(&quot;Withdrawal amount must be positive.&quot;)
+    if amount &gt; balance:
+        # Example of raising a custom exception
+        raise InsufficientFundsError(requested=amount, available=balance)
+    return balance - amount
+
+def process_withdrawal(balance, amount):
+    &quot;&quot;&quot;Processes withdrawal, demonstrating exception chaining.&quot;&quot;&quot;
+    try:
+        return withdraw(balance, amount)
+    except InsufficientFundsError as e:
+        print(&quot;Logging insufficient funds event...&quot;)
+        # Raise a more general processing error, but link it to the original cause
+        raise RuntimeError(f&quot;Withdrawal processing failed for amount {amount}&quot;) from e
+    except ValueError as e:
+         print(&quot;Logging invalid amount event...&quot;)
+         # Raise a more general processing error, linking to the original cause
+         raise RuntimeError(f&quot;Invalid withdrawal amount: {amount}&quot;) from e
+
+
+account_balance = 100
+try:
+    print(&quot;Attempting withdrawal processing...&quot;)
+    # account_balance = process_withdrawal(account_balance, 150) # Example for InsufficientFundsError
+    account_balance = process_withdrawal(account_balance, -50) # Example for ValueError -&gt; RuntimeError
+    print(&quot;Withdrawal successful.&quot;) # This won&#39;t run if error occurs
+except RuntimeError as e:
+     print(f&quot;Caught Processing Error: {e}&quot;)
+     if e.__cause__:
+         print(f&quot;  --&gt; Original Cause: {type(e.__cause__).__name__}: {e.__cause__}&quot;) # Show the chained exception
+except Exception as e:
+    print(f&quot;An unexpected error occurred: {type(e).__name__}: {e}&quot;) # Less specific, use sparingly
+else:
+    print(&quot;Transaction completed without errors.&quot;) # Runs only if try succeeds
+finally:
+    print(f&quot;Current balance: {account_balance}&quot;) # Runs always
+
+# Example Output (for amount = -50):
+# Attempting withdrawal processing...
+# Logging invalid amount event...
+# Caught Processing Error: Invalid withdrawal amount: -50
+#   --&gt; Original Cause: ValueError: Withdrawal amount must be positive.
+# Current balance: 100
+
+# Example Output (for amount = 150):
+# Attempting withdrawal processing...
+# Logging insufficient funds event...
+# Caught Processing Error: Withdrawal processing failed for amount 150
+#   --&gt; Original Cause: InsufficientFundsError: Attempted to withdraw 150, but only 100 available.
+# Current balance: 100
+</code></pre></div>
+</li>
+</ul>
+<h2 id="18-pythonic-code"><strong>1.8 Pythonic Code</strong></h2>
+<ul>
+<li>
+<p><strong>Objective:</strong> Embrace Python's idioms for more readable, concise, and efficient code.</p>
+</li>
+<li>
+<p><strong>Topics:</strong></p>
+<ul>
+<li>
+<p><strong>List Comprehensions:</strong> <code>[expr for item in iterable if condition]</code>.</p>
+</li>
+<li>
+<p><strong>Dictionary Comprehensions:</strong> <code>{key_expr: val_expr for item in iterable if condition}</code>.</p>
+</li>
+<li>
+<p><strong>Set Comprehensions:</strong> <code>{expr for item in iterable if condition}</code>.</p>
+</li>
+<li>
+<p><strong>Generator Expressions:</strong> <code>(expr for item in iterable if condition)</code> - memory efficient, especially useful for large sequences or when you don't need the result list in memory.</p>
+</li>
+<li>
+<p>Using <code>enumerate</code> for index and value in loops.</p>
+</li>
+<li>
+<p>Using <code>zip</code> to iterate over multiple sequences simultaneously.</p>
+</li>
+<li>
+<p>Avoiding manual index manipulation in loops where possible.</p>
+</li>
+<li>
+<p>Truthy and Falsy values (checking for empty sequences/collections directly instead of using <code>len()</code>).</p>
+</li>
+<li>
+<p><strong>f-Strings:</strong> Prefer f-strings (<code>f"..."</code>) for embedding expressions inside string literals, as they are generally the most concise and readable method.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Example Snippet (Pythonic Examples):</strong></p>
+<div class="highlight"><pre><span></span><code># --- Example 1a: Non-Pythonic loop (Squaring) ---
+numbers = [1, 2, 3, 4, 5]
+squares = []
+for i in range(len(numbers)):
+    squares.append(numbers[i] * numbers[i])
+print(squares)
+
+# --- Example 1b: Pythonic using list comprehension (Squaring) ---
+squares_comp = [n * n for n in numbers]
+print(squares_comp)
+
+# --- Example 2a: Non-Pythonic filtering ---
+evens = []
+for n in numbers:
+    if n % 2 == 0:
+        evens.append(n)
+print(evens)
+
+# --- Example 2b: Pythonic filtering with list comprehension ---
+evens_comp = [n for n in numbers if n % 2 == 0]
+print(evens_comp)
+
+# --- Example 3a: Iterating with index (less Pythonic) ---
+items = [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]
+for i in range(len(items)):
+    print(f&quot;Index {i}: {items[i]}&quot;)
+
+# --- Example 3b: Pythonic iteration with enumerate ---
+for index, item in enumerate(items):
+    print(f&quot;Index {index}: {item}&quot;)
+
+# --- Example 4: Checking for empty list (Pythonic) ---
+my_list = []
+if not my_list: # Instead of if len(my_list) == 0:
+    print(&quot;List is empty&quot;)
+
+# --- Example 5: Iterating with zip ---
+names = [&quot;Alice&quot;, &quot;Bob&quot;, &quot;Charlie&quot;]
+scores = [85, 92, 78]
+# zip pairs corresponding elements from multiple iterables
+for name, score in zip(names, scores):
+    print(f&quot;{name}: {score}&quot;)
+# Stops when the shortest iterable is exhausted
+
+# --- Example 6a: Summing squares (less Pythonic - creates intermediate list) ---
+big_numbers = range(1, 1000001) # Represents a potentially large sequence
+# Creates a potentially huge list in memory first
+total_sum_list = sum([x*x for x in big_numbers])
+print(f&quot;Sum of squares (via list): {total_sum_list}&quot;) # Works, but memory intensive
+
+# --- Example 6b: Summing squares (Pythonic - uses generator expression) ---
+# Creates items one by one as sum() consumes them - much more memory efficient
+total_sum_gen = sum(x*x for x in big_numbers)
+print(f&quot;Sum of squares (via generator): {total_sum_gen}&quot;)
+</code></pre></div>
+</li>
+</ul>
+<h2 id="19-style-guides-linters"><strong>1.9 Style Guides &amp; Linters</strong></h2>
+<ul>
+<li>
+<p><strong>Objective:</strong> Understand the importance of consistent code style and how tools can help enforce it.</p>
+</li>
+<li>
+<p><strong>Topics:</strong></p>
+<ul>
+<li>
+<p><strong>Linters:</strong> Tools that analyze code for style errors and potential bugs (can be configured as pre-commit hooks).</p>
+<ul>
+<li>
+<p><code>Flake8</code>: Combines <code>PyFlakes</code> (error checking), <code>pycodestyle</code> (PEP 8 checking), and McCabe (complexity checking).</p>
+</li>
+<li>
+<p><code>Pylint</code>: More extensive checks, highly configurable, can be "noisy".</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Formatters:</strong> Tools that automatically reformat code to comply with a style guide.</p>
+<ul>
+<li><code>Black</code>: The "uncompromising code formatter", enforces a strict subset of PEP 8.</li>
+</ul>
+</li>
+<li>
+<p>Integrating linters/formatters into development workflow (editor integration, pre-commit hooks).</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Exercise:</strong> Install <code>flake8</code> and <code>black</code> (e.g., <code>pip install flake8 black</code>). Save the following code into a Python file (e.g., <code>style_practice.py</code>) and run <code>flake8 style_practice.py</code> to see the style/error reports. Then, run <code>black style_practice.py</code> to automatically format the code. Run <code>flake8</code> again to see the difference.</p>
+<div class="highlight"><pre><span></span><code># --- Code for Linter/Formatter Exercise ---
+import sys
+
+def my_func( a,b ):
+    &#39;&#39;&#39;A simple function with style issues.&#39;&#39;&#39;
+    if (a&gt;b): # Poor spacing
+        result=a*2
+    else:
+          result = b+1 # Bad indentation
+    unused_variable = &quot;I am not used&quot; # Flake8 should find this
+    really_long_line = &quot;This line is intentionally made very very very very very very very very very very very very long to exceed the typical line length limit.&quot;
+    return result
+
+x =10
+y= 5 # Missing space around operator
+
+print (my_func( x,y )) # Extra space before parenthesis
+
+# Missing newline at end of file (Flake8 might warn)
+</code></pre></div>
+</li>
+</ul>
+<h2 id="110-naming-conventions-and-code-readability"><strong>1.10 Naming Conventions and Code Readability</strong></h2>
+<ul>
+<li>
+<p><strong>Objective:</strong> Emphasize the critical role of clear, descriptive naming in writing understandable code.</p>
+</li>
+<li>
+<p><strong>Topics:</strong></p>
+<ul>
+<li>
+<p>PEP 8 Naming Conventions:</p>
+<ul>
+<li>
+<p><code>lower_case_with_underscores</code> for functions, methods, variables (snake_case). Also for filenames.</p>
+</li>
+<li>
+<p><code>UPPER_CASE_WITH_UNDERSCORES</code> for constants.</p>
+</li>
+<li>
+<p><code>CapitalizedWords</code> (CamelCase or PascalCase) for classes.</p>
+</li>
+<li>
+<p><code>_leading_underscore</code>: Internal use/protected convention.</p>
+</li>
+<li>
+<p><code>__leading_double_underscore</code>: Name mangling for class attributes.</p>
+</li>
+<li>
+<p><code>__leading_and_trailing_double_underscore__</code>: "Magic" objects or attributes (dunders).</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Choosing descriptive names: Avoid single letters (except simple loop counters), abbreviations, ambiguity. Name reflects purpose.</p>
+</li>
+<li>
+<p>Function/Method Naming: Often verbs or verb phrases (e.g., <code>calculate_total</code>, <code>is_valid</code>).</p>
+</li>
+<li>
+<p>Variable Naming: Often nouns or noun phrases (e.g., <code>user_name</code>, <code>total_count</code>).</p>
+</li>
+<li>
+<p>Boolean variables/functions: Often start with <code>is_</code>, <code>has_</code>, <code>should_</code> (e.g., <code>is_empty</code>, <code>has_permission</code>).</p>
+</li>
+<li>
+<p>Writing clear comments: Explain <em>why</em>, not <em>what</em> (if the code is already clear). Document complex logic or assumptions. Docstrings for functions/classes/modules.</p>
+</li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>
