@@ -6,6 +6,8 @@ nav:
       - Content: module_1/chapter_1.md
       - Quiz: module_1/chapter_1_quiz.md
       - Exercises: module_1/chapter_1_exercise.md
+    - Chapter 2 - Environment, Dependencies & Build Tools: module_1/chapter_2.md
+    - Chapter 3 - Testing Strategies: module_1/chapter_3.md
 theme: 
   name: material
 markdown_extensions:

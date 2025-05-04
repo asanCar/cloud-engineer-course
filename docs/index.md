@@ -16,13 +16,13 @@ Prerequisites: Basic understanding of programming (Python or Go), familiarity wi
 
 - _Estimated Time:_ 10 hours
 
-### **Chapter 2: Environment, Dependencies & Build Tools**
+### **[Chapter 2: Environment, Dependencies & Build Tools](./module_1/chapter_2.md)**
 
 - _Content:_ Virtual environments (venv/go modules), dependency management (pip/go mod), package structure, build processes.
 
 - _Estimated Time:_ 5 hours
 
-### **Chapter 3: Testing Strategies**
+### **[Chapter 3: Testing Strategies](./module_1/chapter_3.md)**
 
 - _Content:_ Unit testing frameworks (e.g., `unittest`/`pytest` or Go's `testing`), mocking, test-driven development (TDD) principles, basic integration testing concepts.
 
