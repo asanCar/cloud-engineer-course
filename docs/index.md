@@ -22,7 +22,7 @@ Prerequisites: Basic understanding of programming (Python or Go), familiarity wi
 
 - _Estimated Time:_ 5 hours
 
-### **[Chapter 3: Testing Strategies](./module_1/chapter_3.md)**
+### **[Chapter 3: Testing Strategies](./module_1/chapter_3.md)** _(70%)_
 
 - _Content:_ Unit testing frameworks (e.g., `unittest`/`pytest` or Go's `testing`), mocking, test-driven development (TDD) principles, basic integration testing concepts.
 

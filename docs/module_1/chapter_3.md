@@ -62,7 +62,7 @@
     - `patch()` decorator/context manager: (Simplifies the process of replacing objects with mocks during tests).
     - Asserting calls and interactions: (Use methods like `assert_called_once_with()` and `assert_called()` to verify how mock objects were called during the test).
 
-- **Example Snippet (`unittest.mock`):**
+- **Example Snippet (`unittest.mock`):** #TODO Review this example and provide another one more explanatory or real
 
     ```python
     #   --- Example: unittest.mock ---
