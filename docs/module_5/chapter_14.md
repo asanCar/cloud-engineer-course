@@ -156,89 +156,86 @@
 
       - **`GatewayClass`**: Defines a set of Gateways that share a common configuration and behavior. It's typically managed by the infrastructure provider.
 
-                ```
-                # gatewayclass-example.yaml
-                apiVersion: gateway.networking.k8s.io/v1
-                kind: GatewayClass
-                metadata:
-                  name: my-internet-gatewayclass
-                spec:
-                  controllerName: example.com/gateway-controller # Identifies the controller that manages this class
-                # ---
-                ```
+        ```yaml
+        # gatewayclass-example.yaml
+        apiVersion: gateway.networking.k8s.io/v1
+        kind: GatewayClass
+        metadata:
+          name: my-internet-gatewayclass
+        spec:
+          controllerName: example.com/gateway-controller # Identifies the controller that manages this class
+        ```
 
       - **`Gateway`**: Requests a point where traffic can be translated to Services within the cluster. It's typically managed by a cluster operator and references a `GatewayClass`.
 
-                ```
-                # gateway-example.yaml
-                apiVersion: gateway.networking.k8s.io/v1
-                kind: Gateway
-                metadata:
-                  name: my-internet-gateway
-                  namespace: networking-infra # Gateways are often in a dedicated infrastructure namespace
-                spec:
-                  gatewayClassName: my-internet-gatewayclass
-                  listeners:
-                  - name: http
-                    protocol: HTTP
-                    port: 80
-                    allowedRoutes:
-                      namespaces:
-                        from: Selector # Allows routes from namespaces matching a selector
-                        selector:
-                          matchLabels:
-                            expose-via-internet-gateway: "true"
-                  - name: https
-                    protocol: HTTPS
-                    port: 443
-                    tls:
-                      mode: Terminate
-                      certificateRefs:
-                      - kind: Secret
-                        name: my-tls-secret # Secret containing TLS certificate and key
-                    allowedRoutes:
-                      namespaces:
-                        from: Selector
-                        selector:
-                          matchLabels:
-                            expose-via-internet-gateway: "true"
-                # ---
-                ```
+        ```yaml
+        # gateway-example.yaml
+        apiVersion: gateway.networking.k8s.io/v1
+        kind: Gateway
+        metadata:
+          name: my-internet-gateway
+          namespace: networking-infra # Gateways are often in a dedicated infrastructure namespace
+        spec:
+          gatewayClassName: my-internet-gatewayclass
+          listeners:
+          - name: http
+            protocol: HTTP
+            port: 80
+            allowedRoutes:
+              namespaces:
+                from: Selector # Allows routes from namespaces matching a selector
+                selector:
+                  matchLabels:
+                    expose-via-internet-gateway: "true"
+          - name: https
+            protocol: HTTPS
+            port: 443
+            tls:
+              mode: Terminate
+              certificateRefs:
+              - kind: Secret
+                name: my-tls-secret # Secret containing TLS certificate and key
+            allowedRoutes:
+              namespaces:
+                from: Selector
+                selector:
+                  matchLabels:
+                    expose-via-internet-gateway: "true"
+        ```
 
       - **`HTTPRoute`**: Defines rules for routing HTTP traffic from a Gateway to backend Services. It's typically managed by application developers.
 
-                ```
-                # httproute-example.yaml
-                apiVersion: gateway.networking.k8s.io/v1
-                kind: HTTPRoute
-                metadata:
-                  name: my-app-route
-                  namespace: my-application # Routes are often in the application's namespace
-                  labels:
-                    expose-via-internet-gateway: "true" # Matches Gateway's allowedRoutes selector
-                spec:
-                  parentRefs:
-                  - name: my-internet-gateway
-                    namespace: networking-infra # Points to the Gateway in its namespace
-                  hostnames:
-                  - "app.example.com"
-                  rules:
-                  - matches:
-                    - path:
-                        type: PathPrefix
-                        value: /login
-                    backendRefs:
-                    - name: login-service # Kubernetes Service name
-                      port: 8080
-                  - matches:
-                    - path:
-                        type: PathPrefix
-                        value: /
-                    backendRefs:
-                    - name: main-app-service
-                      port: 80
-                # ---
-                ```
+        ```yaml
+        # httproute-example.yaml
+        apiVersion: gateway.networking.k8s.io/v1
+        kind: HTTPRoute
+        metadata:
+          name: my-app-route
+          namespace: my-application # Routes are often in the application's namespace
+          labels:
+            expose-via-internet-gateway: "true" # Matches Gateway's allowedRoutes selector
+        spec:
+          parentRefs:
+          - name: my-internet-gateway
+            namespace: networking-infra # Points to the Gateway in its namespace
+          hostnames:
+          - "app.example.com"
+          rules:
+          - matches:
+            - path:
+                type: PathPrefix
+                value: /login
+            backendRefs:
+            - name: login-service # Kubernetes Service name
+              port: 8080
+          - matches:
+            - path:
+                type: PathPrefix
+                value: /
+            backendRefs:
+            - name: main-app-service
+              port: 80
+        ```
 
       - Other route types like `TCPRoute`, `TLSRoute`, and `GRPCRoute` handle different protocols.
 
@@ -280,72 +277,69 @@
 
     - **Example `StorageClass`:**
 
-            ```
-            # storageclass-example.yaml
-            apiVersion: storage.k8s.io/v1
-            kind: StorageClass
-            metadata:
-              name: standard-ssd # Name of the storage class
-            provisioner: kubernetes.io/aws-ebs # Specific to AWS EBS, other providers have different provisioners
-            parameters:
-              type: gp3 # General Purpose SSD (gp3) volume type for AWS
-              fsType: ext4 # Filesystem type
-            reclaimPolicy: Retain # Or Delete. Retain means the PV is kept after PVC is deleted.
-            allowVolumeExpansion: true
-            mountOptions:
-              - debug
-            volumeBindingMode: Immediate # Or WaitForFirstConsumer
-            # ---
-            ```
+      ```yaml
+      # storageclass-example.yaml
+      apiVersion: storage.k8s.io/v1
+      kind: StorageClass
+      metadata:
+        name: standard-ssd # Name of the storage class
+      provisioner: kubernetes.io/aws-ebs # Specific to AWS EBS, other providers have different provisioners
+      parameters:
+        type: gp3 # General Purpose SSD (gp3) volume type for AWS
+        fsType: ext4 # Filesystem type
+      reclaimPolicy: Retain # Or Delete. Retain means the PV is kept after PVC is deleted.
+      allowVolumeExpansion: true
+      mountOptions:
+        - debug
+      volumeBindingMode: Immediate # Or WaitForFirstConsumer
+      ```
 
     - Example PersistentVolumeClaim (PVC):
 
-            This PVC requests storage from the standard-ssd StorageClass defined above.
+      > This PVC requests storage from the standard-ssd StorageClass defined above.
 
-            ```
-            # pvc-example.yaml
-            apiVersion: v1
-            kind: PersistentVolumeClaim
-            metadata:
-              name: my-app-pvc # Name of the PVC
-              namespace: my-application
-            spec:
-              accessModes:
-                - ReadWriteOnce # Can be mounted as read-write by a single node
-                                # Other modes: ReadOnlyMany, ReadWriteMany, ReadWriteOncePod
-              resources:
-                requests:
-                  storage: 10Gi # Request 10 GiB of storage
-              storageClassName: standard-ssd # Requests storage from this StorageClass
-            # ---
-            ```
+      ```yaml
+      # pvc-example.yaml
+      apiVersion: v1
+      kind: PersistentVolumeClaim
+      metadata:
+        name: my-app-pvc # Name of the PVC
+        namespace: my-application
+      spec:
+        accessModes:
+          - ReadWriteOnce # Can be mounted as read-write by a single node
+                          # Other modes: ReadOnlyMany, ReadWriteMany, ReadWriteOncePod
+        resources:
+          requests:
+            storage: 10Gi # Request 10 GiB of storage
+        storageClassName: standard-ssd # Requests storage from this StorageClass
+      ```
 
     - Example Pod using the PVC:
 
-            This Pod mounts the volume claimed by my-app-pvc into one of its containers.
+      > This Pod mounts the volume claimed by my-app-pvc into one of its containers.
 
-            ```
-            # pod-with-pvc-example.yaml
-            apiVersion: v1
-            kind: Pod
-            metadata:
-              name: my-app-pod
-              namespace: my-application
-            spec:
-              containers:
-                - name: my-app-container
-                  image: nginx:latest # Example image
-                  ports:
-                    - containerPort: 80
-                  volumeMounts:
-                    - name: my-app-storage # Name of the volumeMount, must match a volume name below
-                      mountPath: /usr/share/nginx/html # Path inside the container where the volume is mounted
-              volumes:
-                - name: my-app-storage # Name of the volume, referenced by volumeMounts
-                  persistentVolumeClaim:
-                    claimName: my-app-pvc # Name of the PVC to use
-            # ---
-            ```
+      ```yaml
+      # pod-with-pvc-example.yaml
+      apiVersion: v1
+      kind: Pod
+      metadata:
+        name: my-app-pod
+        namespace: my-application
+      spec:
+        containers:
+          - name: my-app-container
+            image: nginx:latest # Example image
+            ports:
+              - containerPort: 80
+            volumeMounts:
+              - name: my-app-storage # Name of the volumeMount, must match a volume name below
+                mountPath: /usr/share/nginx/html # Path inside the container where the volume is mounted
+        volumes:
+          - name: my-app-storage # Name of the volume, referenced by volumeMounts
+            persistentVolumeClaim:
+              claimName: my-app-pvc # Name of the PVC to use
+      ```
 
 ## 14.6: Configuration Management
 

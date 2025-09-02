@@ -96,18 +96,18 @@
 
     - Example basic command:
 
-            ```
-            eksctl create cluster \
-                --name my-eks-cluster \
-                --version 1.29 \
-                --region us-west-2 \
-                --nodegroup-name standard-workers \
-                --node-type t3.medium \
-                --nodes 2 \
-                --nodes-min 1 \
-                --nodes-max 3 \
-                --managed # For managed node groups            
-            ```
+      ```bash
+      eksctl create cluster \
+          --name my-eks-cluster \
+          --version 1.29 \
+          --region us-west-2 \
+          --nodegroup-name standard-workers \
+          --node-type t3.medium \
+          --nodes 2 \
+          --nodes-min 1 \
+          --nodes-max 3 \
+          --managed # For managed node groups            
+      ```
 
   - **Key Cluster Configuration Options:**
 
@@ -153,11 +153,11 @@
 
     - Use the AWS CLI command:
 
-            ```
-            aws eks update-kubeconfig --region <your-region> --name <your-cluster-name>
-            ```
+      ```bash
+      aws eks update-kubeconfig --region <your-region> --name <your-cluster-name>
+      ```
 
-            Example: `aws eks update-kubeconfig --region us-west-2 --name my-eks-cluster`
+      Example: `aws eks update-kubeconfig --region us-west-2 --name my-eks-cluster`
 
     - `eksctl` often does this automatically after successful cluster creation if AWS CLI is configured.
 
@@ -167,10 +167,10 @@
 
     - After updating `kubeconfig`, test the connection:
 
-            ```
-            kubectl get nodes
-            kubectl cluster-info
-            ```
+      ```bash
+      kubectl get nodes
+      kubectl cluster-info
+      ```
 
 ## 15.4: EKS Pricing and Cost Management
 
