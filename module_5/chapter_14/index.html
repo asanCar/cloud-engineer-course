@@ -1083,92 +1083,83 @@
 </li>
 <li>
 <p><strong><code>GatewayClass</code></strong>: Defines a set of Gateways that share a common configuration and behavior. It's typically managed by the infrastructure provider.</p>
-<pre><code>    ```
-    # gatewayclass-example.yaml
-    apiVersion: gateway.networking.k8s.io/v1
-    kind: GatewayClass
-    metadata:
-      name: my-internet-gatewayclass
-    spec:
-      controllerName: example.com/gateway-controller # Identifies the controller that manages this class
-    # ---
-    ```
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="c1"># gatewayclass-example.yaml</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gateway.networking.k8s.io/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GatewayClass</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-internet-gatewayclass</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">controllerName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example.com/gateway-controller</span><span class="w"> </span><span class="c1"># Identifies the controller that manages this class</span>
+</code></pre></div>
 </li>
 <li>
 <p><strong><code>Gateway</code></strong>: Requests a point where traffic can be translated to Services within the cluster. It's typically managed by a cluster operator and references a <code>GatewayClass</code>.</p>
-<pre><code>    ```
-    # gateway-example.yaml
-    apiVersion: gateway.networking.k8s.io/v1
-    kind: Gateway
-    metadata:
-      name: my-internet-gateway
-      namespace: networking-infra # Gateways are often in a dedicated infrastructure namespace
-    spec:
-      gatewayClassName: my-internet-gatewayclass
-      listeners:
-      - name: http
-        protocol: HTTP
-        port: 80
-        allowedRoutes:
-          namespaces:
-            from: Selector # Allows routes from namespaces matching a selector
-            selector:
-              matchLabels:
-                expose-via-internet-gateway: "true"
-      - name: https
-        protocol: HTTPS
-        port: 443
-        tls:
-          mode: Terminate
-          certificateRefs:
-          - kind: Secret
-            name: my-tls-secret # Secret containing TLS certificate and key
-        allowedRoutes:
-          namespaces:
-            from: Selector
-            selector:
-              matchLabels:
-                expose-via-internet-gateway: "true"
-    # ---
-    ```
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="c1"># gateway-example.yaml</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gateway.networking.k8s.io/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Gateway</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-internet-gateway</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">networking-infra</span><span class="w"> </span><span class="c1"># Gateways are often in a dedicated infrastructure namespace</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">gatewayClassName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-internet-gatewayclass</span>
+<span class="w">  </span><span class="nt">listeners</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http</span>
+<span class="w">    </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HTTP</span>
+<span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
+<span class="w">    </span><span class="nt">allowedRoutes</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">namespaces</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">from</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Selector</span><span class="w"> </span><span class="c1"># Allows routes from namespaces matching a selector</span>
+<span class="w">        </span><span class="nt">selector</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">matchLabels</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">expose-via-internet-gateway</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https</span>
+<span class="w">    </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HTTPS</span>
+<span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">443</span>
+<span class="w">    </span><span class="nt">tls</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Terminate</span>
+<span class="w">      </span><span class="nt">certificateRefs</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Secret</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-tls-secret</span><span class="w"> </span><span class="c1"># Secret containing TLS certificate and key</span>
+<span class="w">    </span><span class="nt">allowedRoutes</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">namespaces</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">from</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Selector</span>
+<span class="w">        </span><span class="nt">selector</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">matchLabels</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">expose-via-internet-gateway</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span>
+</code></pre></div>
 </li>
 <li>
 <p><strong><code>HTTPRoute</code></strong>: Defines rules for routing HTTP traffic from a Gateway to backend Services. It's typically managed by application developers.</p>
-<pre><code>    ```
-    # httproute-example.yaml
-    apiVersion: gateway.networking.k8s.io/v1
-    kind: HTTPRoute
-    metadata:
-      name: my-app-route
-      namespace: my-application # Routes are often in the application's namespace
-      labels:
-        expose-via-internet-gateway: "true" # Matches Gateway's allowedRoutes selector
-    spec:
-      parentRefs:
-      - name: my-internet-gateway
-        namespace: networking-infra # Points to the Gateway in its namespace
-      hostnames:
-      - "app.example.com"
-      rules:
-      - matches:
-        - path:
-            type: PathPrefix
-            value: /login
-        backendRefs:
-        - name: login-service # Kubernetes Service name
-          port: 8080
-      - matches:
-        - path:
-            type: PathPrefix
-            value: /
-        backendRefs:
-        - name: main-app-service
-          port: 80
-    # ---
-    ```
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="c1"># httproute-example.yaml</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gateway.networking.k8s.io/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HTTPRoute</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-app-route</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-application</span><span class="w"> </span><span class="c1"># Routes are often in the application&#39;s namespace</span>
+<span class="w">  </span><span class="nt">labels</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">expose-via-internet-gateway</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span><span class="w"> </span><span class="c1"># Matches Gateway&#39;s allowedRoutes selector</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">parentRefs</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-internet-gateway</span>
+<span class="w">    </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">networking-infra</span><span class="w"> </span><span class="c1"># Points to the Gateway in its namespace</span>
+<span class="w">  </span><span class="nt">hostnames</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;app.example.com&quot;</span>
+<span class="w">  </span><span class="nt">rules</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">matches</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">path</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PathPrefix</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/login</span>
+<span class="w">    </span><span class="nt">backendRefs</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">login-service</span><span class="w"> </span><span class="c1"># Kubernetes Service name</span>
+<span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">matches</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">path</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PathPrefix</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/</span>
+<span class="w">    </span><span class="nt">backendRefs</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">main-app-service</span>
+<span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
+</code></pre></div>
 </li>
 <li>
 <p>Other route types like <code>TCPRoute</code>, <code>TLSRoute</code>, and <code>GRPCRoute</code> handle different protocols.</p>
@@ -1235,77 +1226,70 @@
 </li>
 <li>
 <p><strong>Example <code>StorageClass</code>:</strong></p>
-<pre><code>```
-# storageclass-example.yaml
-apiVersion: storage.k8s.io/v1
-kind: StorageClass
-metadata:
-  name: standard-ssd # Name of the storage class
-provisioner: kubernetes.io/aws-ebs # Specific to AWS EBS, other providers have different provisioners
-parameters:
-  type: gp3 # General Purpose SSD (gp3) volume type for AWS
-  fsType: ext4 # Filesystem type
-reclaimPolicy: Retain # Or Delete. Retain means the PV is kept after PVC is deleted.
-allowVolumeExpansion: true
-mountOptions:
-  - debug
-volumeBindingMode: Immediate # Or WaitForFirstConsumer
-# ---
-```
-</code></pre>
-</li>
-<li>
-<p>Example PersistentVolumeClaim (PVC):</p>
-<pre><code>This PVC requests storage from the standard-ssd StorageClass defined above.
-
-```
-# pvc-example.yaml
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: my-app-pvc # Name of the PVC
-  namespace: my-application
-spec:
-  accessModes:
-    - ReadWriteOnce # Can be mounted as read-write by a single node
-                    # Other modes: ReadOnlyMany, ReadWriteMany, ReadWriteOncePod
-  resources:
-    requests:
-      storage: 10Gi # Request 10 GiB of storage
-  storageClassName: standard-ssd # Requests storage from this StorageClass
-# ---
-```
-</code></pre>
-</li>
-<li>
-<p>Example Pod using the PVC:</p>
-<pre><code>This Pod mounts the volume claimed by my-app-pvc into one of its containers.
-
-```
-# pod-with-pvc-example.yaml
-apiVersion: v1
-kind: Pod
-metadata:
-  name: my-app-pod
-  namespace: my-application
-spec:
-  containers:
-    - name: my-app-container
-      image: nginx:latest # Example image
-      ports:
-        - containerPort: 80
-      volumeMounts:
-        - name: my-app-storage # Name of the volumeMount, must match a volume name below
-          mountPath: /usr/share/nginx/html # Path inside the container where the volume is mounted
-  volumes:
-    - name: my-app-storage # Name of the volume, referenced by volumeMounts
-      persistentVolumeClaim:
-        claimName: my-app-pvc # Name of the PVC to use
-# ---
-```
-</code></pre>
 </li>
 </ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># storageclass-example.yaml</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">storage.k8s.io/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">StorageClass</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">standard-ssd</span><span class="w"> </span><span class="c1"># Name of the storage class</span>
+<span class="nt">provisioner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubernetes.io/aws-ebs</span><span class="w"> </span><span class="c1"># Specific to AWS EBS, other providers have different provisioners</span>
+<span class="nt">parameters</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gp3</span><span class="w"> </span><span class="c1"># General Purpose SSD (gp3) volume type for AWS</span>
+<span class="w">  </span><span class="nt">fsType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ext4</span><span class="w"> </span><span class="c1"># Filesystem type</span>
+<span class="nt">reclaimPolicy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Retain</span><span class="w"> </span><span class="c1"># Or Delete. Retain means the PV is kept after PVC is deleted.</span>
+<span class="nt">allowVolumeExpansion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">mountOptions</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">debug</span>
+<span class="nt">volumeBindingMode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Immediate</span><span class="w"> </span><span class="c1"># Or WaitForFirstConsumer</span>
+</code></pre></div>
+<ul>
+<li>Example PersistentVolumeClaim (PVC):</li>
+</ul>
+<blockquote>
+<p>This PVC requests storage from the standard-ssd StorageClass defined above.</p>
+</blockquote>
+<div class="highlight"><pre><span></span><code><span class="c1"># pvc-example.yaml</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PersistentVolumeClaim</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-app-pvc</span><span class="w"> </span><span class="c1"># Name of the PVC</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-application</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">accessModes</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ReadWriteOnce</span><span class="w"> </span><span class="c1"># Can be mounted as read-write by a single node</span>
+<span class="w">                    </span><span class="c1"># Other modes: ReadOnlyMany, ReadWriteMany, ReadWriteOncePod</span>
+<span class="w">  </span><span class="nt">resources</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">requests</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">storage</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10Gi</span><span class="w"> </span><span class="c1"># Request 10 GiB of storage</span>
+<span class="w">  </span><span class="nt">storageClassName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">standard-ssd</span><span class="w"> </span><span class="c1"># Requests storage from this StorageClass</span>
+</code></pre></div>
+<ul>
+<li>Example Pod using the PVC:</li>
+</ul>
+<blockquote>
+<p>This Pod mounts the volume claimed by my-app-pvc into one of its containers.</p>
+</blockquote>
+<div class="highlight"><pre><span></span><code><span class="c1"># pod-with-pvc-example.yaml</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Pod</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-app-pod</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-application</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">containers</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-app-container</span>
+<span class="w">      </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx:latest</span><span class="w"> </span><span class="c1"># Example image</span>
+<span class="w">      </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
+<span class="w">      </span><span class="nt">volumeMounts</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-app-storage</span><span class="w"> </span><span class="c1"># Name of the volumeMount, must match a volume name below</span>
+<span class="w">          </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/usr/share/nginx/html</span><span class="w"> </span><span class="c1"># Path inside the container where the volume is mounted</span>
+<span class="w">  </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-app-storage</span><span class="w"> </span><span class="c1"># Name of the volume, referenced by volumeMounts</span>
+<span class="w">      </span><span class="nt">persistentVolumeClaim</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">claimName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-app-pvc</span><span class="w"> </span><span class="c1"># Name of the PVC to use</span>
+</code></pre></div>
 </li>
 </ul>
 <h2 id="146-configuration-management">14.6: Configuration Management</h2>

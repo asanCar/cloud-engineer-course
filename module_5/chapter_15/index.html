@@ -901,21 +901,19 @@
 </li>
 <li>
 <p>Example basic command:</p>
-<pre><code>```
-eksctl create cluster \
-    --name my-eks-cluster \
-    --version 1.29 \
-    --region us-west-2 \
-    --nodegroup-name standard-workers \
-    --node-type t3.medium \
-    --nodes 2 \
-    --nodes-min 1 \
-    --nodes-max 3 \
-    --managed # For managed node groups            
-```
-</code></pre>
 </li>
 </ul>
+<div class="highlight"><pre><span></span><code>eksctl<span class="w"> </span>create<span class="w"> </span>cluster<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--name<span class="w"> </span>my-eks-cluster<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--version<span class="w"> </span><span class="m">1</span>.29<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--region<span class="w"> </span>us-west-2<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--nodegroup-name<span class="w"> </span>standard-workers<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--node-type<span class="w"> </span>t3.medium<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--nodes<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--nodes-min<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--nodes-max<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--managed<span class="w"> </span><span class="c1"># For managed node groups            </span>
+</code></pre></div>
 </li>
 <li>
 <p><strong>Key Cluster Configuration Options:</strong></p>
@@ -986,13 +984,12 @@ eksctl create cluster \
 </li>
 <li>
 <p>Use the AWS CLI command:</p>
-<pre><code>```
-aws eks update-kubeconfig --region &lt;your-region&gt; --name &lt;your-cluster-name&gt;
-```
-
-Example: `aws eks update-kubeconfig --region us-west-2 --name my-eks-cluster`
-</code></pre>
 </li>
+</ul>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>eks<span class="w"> </span>update-kubeconfig<span class="w"> </span>--region<span class="w"> </span>&lt;your-region&gt;<span class="w"> </span>--name<span class="w"> </span>&lt;your-cluster-name&gt;
+</code></pre></div>
+<p>Example: <code>aws eks update-kubeconfig --region us-west-2 --name my-eks-cluster</code></p>
+<ul>
 <li>
 <p><code>eksctl</code> often does this automatically after successful cluster creation if AWS CLI is configured.</p>
 </li>
@@ -1004,13 +1001,11 @@ Example: `aws eks update-kubeconfig --region us-west-2 --name my-eks-cluster`
 <li>
 <p><strong>Verifying Cluster Connectivity:</strong></p>
 <ul>
-<li>After updating <code>kubeconfig</code>, test the connection:<pre><code>```
-kubectl get nodes
-kubectl cluster-info
-```
-</code></pre>
-</li>
+<li>After updating <code>kubeconfig</code>, test the connection:</li>
 </ul>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>nodes
+kubectl<span class="w"> </span>cluster-info
+</code></pre></div>
 </li>
 </ul>
 <h2 id="154-eks-pricing-and-cost-management">15.4: EKS Pricing and Cost Management</h2>
