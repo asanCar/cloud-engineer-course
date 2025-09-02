@@ -128,4 +128,4 @@ Prerequisites: Basic understanding of programming (Python or Go), familiarity wi
 
 **Total Estimated Course Time:** Approximately 240 - 250 hours (Studying 1-2 hours per day, the course would take approximately 120-250 days to complete)
 
-_(Note: These are estimates and actual time may vary based on the individual's learning pace and prior experience.)_
+_(Note: These are estimates and actual time may vary based on the individual's learning pace and prior experience)_.

@@ -6,7 +6,7 @@ Select the best answer for each question.
 
 Consider the following code:
 
-```
+```python
 def my_decorator(func):
     def wrapper(*args, **kwargs):
         print("Before")
@@ -25,17 +25,20 @@ say_whee("Pythonista")
 What will be the exact output when `say_whee("Pythonista")` is called?
 
 a.
+
 ```
 Whee, Pythonista!
 ```
 
 b.
+
 ```
 Before
 After
 ```
 
 c.
+
 ```
 Before
 Whee, Pythonista!
@@ -43,6 +46,7 @@ After
 ```
 
 d.
+
 ```
 Whee, Pythonista!
 Before
@@ -74,7 +78,7 @@ a. Generator expressions are always faster than list comprehensions. b. Generato
 
 Consider the following Python code involving nested functions (closures):
 
-```
+```python
 x = "Global"
 
 def outer_func():
@@ -171,7 +175,7 @@ a. `__exit__` is skipped entirely. b. `__exit__` is called, and the exception de
 
 Consider the following code:
 
-```
+```python
 def process_value(val):
     try:
         print("Start Try")
@@ -263,7 +267,7 @@ What is the Pythonic way to get both the index and the value while iterating ove
 
 a.
 
-```
+```python
 index = 0
 for value in my_list:
     print(f"Index {index}: {value}")
@@ -272,7 +276,7 @@ for value in my_list:
 
 b.
 
-```
+```python
 for index in range(len(my_list)):
     value = my_list[index]
     print(f"Index {index}: {value}")
@@ -280,14 +284,14 @@ for index in range(len(my_list)):
 
 c.
 
-```
+```python
 for index, value in enumerate(my_list):
     print(f"Index {index}: {value}")
 ```
 
 d.
 
-```
+```python
 for value in my_list:
     index = my_list.index(value)
     print(f"Index {index}: {value}")
@@ -318,7 +322,7 @@ a. `snake_case` (e.g., `my_class`) b. `camelCase` (e.g., `myClass`) c. `UPPER_SN
 
 Given the following multiple inheritance structure (a "diamond pattern"):
 
-```
+```python
 class A:
     def ping(self):
         print("Ping from A")

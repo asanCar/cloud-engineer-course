@@ -112,7 +112,7 @@
   - **Importing Code:** Prefer absolute imports for clarity; use relative imports within packages.
 - **Example Snippet (Basic Project Structure):**
 
-    ```
+    ```plain
     # --- Example: Basic Project Structure ---
     my_project/
     ├── src/

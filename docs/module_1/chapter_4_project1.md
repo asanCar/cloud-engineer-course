@@ -1,4 +1,4 @@
-## Chapter 4 Project Solution: Refactored Data Processor
+# Chapter 4 Project Solution: Refactored Data Processor
 
 This document provides a potential solution to the Chapter 4 project, demonstrating refactoring, feature extension, and unit testing based on the concepts covered in Chapter 1.
 
@@ -7,21 +7,20 @@ This document provides a potential solution to the Chapter 4 project, demonstrat
 This version incorporates:
 
 - Context managers for file handling.
-    
-- OOP using an `Employee` class (or `namedtuple` could also be used).
-    
-- Direct iteration over the CSV reader.
-    
-- Specific error handling (`try...except`).
-    
-- Logging using the `logging` module.
-    
-- Calculation of average salary per department.
-    
-- PEP 8 styling and clearer naming.
-    
 
-```
+- OOP using an `Employee` class (or `namedtuple` could also be used).
+
+- Direct iteration over the CSV reader.
+
+- Specific error handling (`try...except`).
+
+- Logging using the `logging` module.
+
+- Calculation of average salary per department.
+
+- PEP 8 styling and clearer naming.
+
+```python
 # --- Refactored Code ---
 # (Save this as data_processor_refactored.py)
 
@@ -186,7 +185,7 @@ if __name__ == "__main__":
 
 This example uses `pytest` and `unittest.mock`. You would need to install them (`pip install pytest pytest-mock`).
 
-```
+```python
 # --- Unit Tests ---
 # (Save this as test_data_processor.py in a 'tests' subdirectory)
 
@@ -315,18 +314,17 @@ def test_header_only_file(mock_csv_file):
 **Setup & Running Tests:**
 
 1. Save the refactored code as `data_processor_refactored.py`.
-    
+
 2. Create a directory named `tests`.
-    
+
 3. Save the test code as `test_data_processor.py` inside the `tests` directory.
-    
+
 4. Make sure your virtual environment is active.
-    
+
 5. Install necessary packages: `pip install pytest pytest-mock`
-    
+
 6. Navigate to the _parent directory_ of your `tests` folder in the terminal.
-    
+
 7. Run pytest: `pytest`
-    
 
 This solution provides a solid refactoring incorporating many Chapter 1 concepts and includes basic unit tests to verify functionality and handle edge cases.

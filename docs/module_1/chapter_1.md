@@ -7,22 +7,22 @@
 ## **1.1 Data Structures & Control Flow**
 
 - **Objective:** Quickly refresh core data structures and control flow mechanisms.
-    
+
 - **Topics:**
-    
-    - **Lists:** Methods (`append`, `extend`, `insert`, `remove`, `pop`, `sort`), slicing, list comprehensions (brief intro - covered more in 1.8).
-        
-    - **Dictionaries:** Key-value pairs, methods (`keys`, `values`, `items`, `get`, `pop`), dictionary comprehensions (brief intro).
-        
-    - **Sets:** Unordered unique elements, methods (`add`, `remove`, `union`, `intersection`, `difference`), use cases (membership testing, removing duplicates).
-        
-    - **Tuples:** Immutable sequences, packing/unpacking, use cases (dictionary keys, returning multiple values).
-        
-    - **Control Flow:** `if`/`elif`/`else`, `for` loops (iterating over sequences, `range`), `while` loops, `break`, `continue`, `pass`.
-        
+
+  - **Lists:** Methods (`append`, `extend`, `insert`, `remove`, `pop`, `sort`), slicing, list comprehensions (brief intro - covered more in 1.8).
+
+  - **Dictionaries:** Key-value pairs, methods (`keys`, `values`, `items`, `get`, `pop`), dictionary comprehensions (brief intro).
+
+  - **Sets:** Unordered unique elements, methods (`add`, `remove`, `union`, `intersection`, `difference`), use cases (membership testing, removing duplicates).
+
+  - **Tuples:** Immutable sequences, packing/unpacking, use cases (dictionary keys, returning multiple values).
+
+  - **Control Flow:** `if`/`elif`/`else`, `for` loops (iterating over sequences, `range`), `while` loops, `break`, `continue`, `pass`.
+
 - **Example Snippet (Tuple Unpacking):**
-    
-    ```
+
+    ```python
     # --- Example 1: Basic Tuple Unpacking ---
     point = (10, 20)
     x, y = point # Unpacking
@@ -33,29 +33,28 @@
     for x_coord, y_coord in coordinates: # Unpacking in loops
         print(f"Processing point: ({x_coord}, {y_coord})")
     ```
-    
 
 ## **1.2 Functions Deep Dive**
 
 - **Objective:** Understand function scope rules, closures, and flexible argument handling.
-    
+
 - **Topics:**
-    
-    - **Scope (LEGB Rule):** Local, Enclosing function locals, Global, Built-in. How Python searches for names.
-        
-    - **Closures:** Functions that "remember" their enclosing lexical scope, even when the enclosing function has finished executing. Practical examples (e.g., factory functions).
-        
-    - **Argument Packing/Unpacking:**
-        
-        - `*args`: Collects positional arguments into a tuple.
-            
-        - `**kwargs`: Collects keyword arguments into a dictionary.
-            
-        - Using `*` and `**` when _calling_ functions to unpack iterables/dictionaries.
-            
+
+  - **Scope (LEGB Rule):** Local, Enclosing function locals, Global, Built-in. How Python searches for names.
+
+  - **Closures:** Functions that "remember" their enclosing lexical scope, even when the enclosing function has finished executing. Practical examples (e.g., factory functions).
+
+  - **Argument Packing/Unpacking:**
+
+    - `*args`: Collects positional arguments into a tuple.
+
+    - `**kwargs`: Collects keyword arguments into a dictionary.
+
+    - Using `*` and `**` when _calling_ functions to unpack iterables/dictionaries.
+
 - **Example Snippet (Closure & *args/**kwargs):**
-    
-    ```
+
+    ```python
     # --- Example 1: Closure ---
     def outer_function(msg):
         # msg is in the enclosing scope
@@ -82,41 +81,40 @@
     # Options: {'verbose': True, 'retries': 3}
     # Verbose mode enabled.
     ```
-    
 
 ## **1.3 Object-Oriented Programming (OOP) Revisited**
 
 - **Objective:** Solidify OOP concepts and understand the role of special ("dunder") methods.
-    
+
 - **Topics:**
-    
-    - **Classes and Objects:** Review of basic definition, instantiation.
-        
-    - **Inheritance:** Single and multiple inheritance (Method Resolution Order - MRO), `super()`.
-        
-    - **Polymorphism:** Duck typing ("If it walks like a duck and quacks like a duck...").
-        
-    - **Encapsulation:** Using naming conventions (`_protected`, `__private` name mangling) - Python relies on convention more than strict enforcement.
-        
-    - **Dunder Methods:**
-        
-        - `__init__(self, ...)`: Constructor.
-            
-        - `__str__(self)`: User-friendly string representation (`str()`).
-            
-        - `__repr__(self)`: Developer-friendly string representation (`repr()`). Aim for unambiguous representation.
-            
-        - `__len__(self)`: Length (`len()`).
-            
-        - `__eq__(self, other)`: Equality comparison (`==`).
-            
-        - Others (`__add__`, `__getitem__`, etc.) as needed.
-            
-    - **Properties:** Using `@property` decorator for getter methods, `@<property_name>.setter` for setters - provides controlled access to attributes.
-        
+
+  - **Classes and Objects:** Review of basic definition, instantiation.
+
+  - **Inheritance:** Single and multiple inheritance (Method Resolution Order - MRO), `super()`.
+
+  - **Polymorphism:** Duck typing ("If it walks like a duck and quacks like a duck...").
+
+  - **Encapsulation:** Using naming conventions (`_protected`, `__private` name mangling) - Python relies on convention more than strict enforcement.
+
+  - **Dunder Methods:**
+
+    - `__init__(self, ...)`: Constructor.
+
+    - `__str__(self)`: User-friendly string representation (`str()`).
+
+    - `__repr__(self)`: Developer-friendly string representation (`repr()`). Aim for unambiguous representation.
+
+    - `__len__(self)`: Length (`len()`).
+
+    - `__eq__(self, other)`: Equality comparison (`==`).
+
+    - Others (`__add__`, `__getitem__`, etc.) as needed.
+
+  - **Properties:** Using `@property` decorator for getter methods, `@<property_name>.setter` for setters - provides controlled access to attributes.
+
 - **Example Snippet (Inheritance, Dunder Methods & Properties Combined):**
-    
-    ```
+
+    ```python
     # --- Example Combined OOP Concepts ---
     
     # Base Class: Publication
@@ -225,45 +223,44 @@
     print(f"Is book1 a Publication? {isinstance(book1, Publication)}") # True
     print(f"Is generic_pub a Book? {isinstance(generic_pub, Book)}") # False
     ```
-    
 
 ## **1.4 Decorators**
 
 - **Objective:** Understand how decorators work conceptually, why they are useful, and how to implement custom ones for common tasks like logging or timing.
-    
+
 - **Topics:**
-    
-    - **What are Decorators?** Syntactic sugar (`@`) for a pattern where a function takes another function as input, adds some functionality (wraps it), and returns the modified function. Think of it like wrapping a gift – you add wrapping paper (extra functionality) without changing the gift (original function) itself.
-        
-    - **Why Use Decorators?**
-        
-        - _Code Reusability:_ Apply the same extra logic (like logging, timing, access control) to multiple functions without repeating code.
-            
-        - _Separation of Concerns:_ Keep the core logic of your function separate from cross-cutting concerns (like logging or performance monitoring).
-            
-        - _Readability:_ The `@decorator_name` syntax clearly indicates that a function's behavior is being modified.
-            
-    - **Functions as First-Class Objects:** Decorators rely on the fact that functions in Python can be passed as arguments, returned from other functions, and assigned to variables.
-        
-    - **How Decorators Work (Conceptual Steps):**
-        
-        1. You define a function (e.g., `my_decorator`) that accepts another function (`func`) as an argument.
-            
-        2. Inside `my_decorator`, you define a _nested_ function (often called `wrapper` or `inner`). This `wrapper` function will contain the extra logic _plus_ a call to the original function `func`.
-            
-        3. `my_decorator` returns the `wrapper` function.
-            
-        4. When you use `@my_decorator` above another function definition (e.g., `say_hello`), Python essentially does this: `say_hello = my_decorator(say_hello)`. Now, `say_hello` actually refers to the `wrapper` function returned by the decorator.
-            
-    - **Using `functools.wraps`:** Essential for preserving the original function's metadata (like its name `__name__` and docstring `__doc__`). Without it, the decorated function would appear to be the `wrapper` function, which can confuse debugging and documentation tools.
-        
-    - **Decorators with Arguments:** Requires an extra layer of nesting. The outer function takes the decorator arguments and returns the actual decorator function, which then takes the target function and returns the wrapper.
-        
-    - **Class-Based Decorators:** You can also use classes to create decorators, typically by implementing the `__init__` and `__call__` methods. The instance is initialized, and then `__call__` is invoked when the decorated function is called.
-        
+
+  - **What are Decorators?** Syntactic sugar (`@`) for a pattern where a function takes another function as input, adds some functionality (wraps it), and returns the modified function. Think of it like wrapping a gift – you add wrapping paper (extra functionality) without changing the gift (original function) itself.
+
+  - **Why Use Decorators?**
+
+    - _Code Reusability:_ Apply the same extra logic (like logging, timing, access control) to multiple functions without repeating code.
+
+    - _Separation of Concerns:_ Keep the core logic of your function separate from cross-cutting concerns (like logging or performance monitoring).
+
+    - _Readability:_ The `@decorator_name` syntax clearly indicates that a function's behavior is being modified.
+
+  - **Functions as First-Class Objects:** Decorators rely on the fact that functions in Python can be passed as arguments, returned from other functions, and assigned to variables.
+
+  - **How Decorators Work (Conceptual Steps):**
+
+    1. You define a function (e.g., `my_decorator`) that accepts another function (`func`) as an argument.
+
+    2. Inside `my_decorator`, you define a _nested_ function (often called `wrapper` or `inner`). This `wrapper` function will contain the extra logic _plus_ a call to the original function `func`.
+
+    3. `my_decorator` returns the `wrapper` function.
+
+    4. When you use `@my_decorator` above another function definition (e.g., `say_hello`), Python essentially does this: `say_hello = my_decorator(say_hello)`. Now, `say_hello` actually refers to the `wrapper` function returned by the decorator.
+
+  - **Using `functools.wraps`:** Essential for preserving the original function's metadata (like its name `__name__` and docstring `__doc__`). Without it, the decorated function would appear to be the `wrapper` function, which can confuse debugging and documentation tools.
+
+  - **Decorators with Arguments:** Requires an extra layer of nesting. The outer function takes the decorator arguments and returns the actual decorator function, which then takes the target function and returns the wrapper.
+
+  - **Class-Based Decorators:** You can also use classes to create decorators, typically by implementing the `__init__` and `__call__` methods. The instance is initialized, and then `__call__` is invoked when the decorated function is called.
+
 - **Example Snippet (Simple Timer Decorator - Explained):**
-    
-    ```
+
+    ```python
     # --- Example 1: Timer Decorator ---
     import functools
     import time
@@ -305,25 +302,24 @@
     print(complex_calculation.__name__) # Output: complex_calculation (thanks to wraps)
     print(complex_calculation.__doc__) # Output: Simulates a time-consuming task. (thanks to wraps)
     ```
-    
 
 ## **1.5 Generators and Iterators**
 
 - **Objective:** Learn how generators provide memory-efficient ways to create iterables, especially for large datasets.
-    
+
 - **Topics:**
-    
-    - **Iterator Protocol:** Defines how iteration works via `__iter__()` (returns the iterator object itself) and `__next__()` (returns the next item). `StopIteration` exception is raised when no more items are available.
-        
-    - **Generators:** Functions using `yield` to produce a sequence of values lazily. State is saved between calls.
-        
-    - **Generator Expressions:** Concise syntax similar to list comprehensions but creating generators `(x*x for x in range(10))`.
-        
-    - Use cases: Processing large files, infinite sequences, pipelines.
-        
+
+  - **Iterator Protocol:** Defines how iteration works via `__iter__()` (returns the iterator object itself) and `__next__()` (returns the next item). `StopIteration` exception is raised when no more items are available.
+
+  - **Generators:** Functions using `yield` to produce a sequence of values lazily. State is saved between calls.
+
+  - **Generator Expressions:** Concise syntax similar to list comprehensions but creating generators `(x*x for x in range(10))`.
+
+  - Use cases: Processing large files, infinite sequences, pipelines.
+
 - **Example Snippet (Generator for Fibonacci):**
-    
-    ```
+
+    ```python
     # --- Example 1: Fibonacci Generator ---
     def fibonacci_generator(limit):
         a, b = 0, 1
@@ -344,10 +340,10 @@
         print(sq, end=" ") # Output: 0 1 4 9 16
     print()
     ```
-    
+
 - **Example Snippet (Simple Generator Pipeline):**
-    
-    ```
+
+    ```python
     # --- Example 3: Simple Generator Pipeline ---
     # 0. Our initial data
     numbers = [1, 2, 3, 4, 5, 6, 7, 8]
@@ -372,29 +368,28 @@
       print(f"PIPELINE RESULT: {even_square}")
     print("Pipeline finished.")
     ```
-    
 
 ## **1.6 Context Managers**
 
 - **Objective:** Understand how the `with` statement simplifies resource management (files, network connections, locks).
-    
+
 - **Topics:**
-    
-    - **The need for cleanup (`try...finally`):** Manually managing resources (like closing files or releasing locks) with `try...finally` is necessary but verbose and error-prone; it's easy to forget the `finally` block or handle exceptions incorrectly.
-        
-    - **The `with` statement:** Provides a cleaner, more reliable way to ensure that setup and teardown actions (like opening/closing a resource) happen automatically, even if errors occur within the block.
-        
-    - **Context Manager Protocol:** This is what makes the `with` statement work. Requires an object to have two special methods:
-        
-        - `__enter__(self)`: Executed at the start of the `with` block. Often returns the resource itself (like the file object) or `self`.
-            
-        - `__exit__(self, exc_type, exc_val, exc_tb)`: Executed when exiting the `with` block (normally or due to an exception). It receives exception details (type, value, traceback) if any occurred and performs the cleanup. Returning `True` from `__exit__` suppresses the exception.
-            
-    - **Using `contextlib.contextmanager`:** A decorator that lets you create a context manager more easily using a generator function with a single `yield`. Code before `yield` acts as `__enter__`, code after `yield` (in a `finally` block) acts as `__exit__`.
-        
+
+  - **The need for cleanup (`try...finally`):** Manually managing resources (like closing files or releasing locks) with `try...finally` is necessary but verbose and error-prone; it's easy to forget the `finally` block or handle exceptions incorrectly.
+
+  - **The `with` statement:** Provides a cleaner, more reliable way to ensure that setup and teardown actions (like opening/closing a resource) happen automatically, even if errors occur within the block.
+
+  - **Context Manager Protocol:** This is what makes the `with` statement work. Requires an object to have two special methods:
+
+    - `__enter__(self)`: Executed at the start of the `with` block. Often returns the resource itself (like the file object) or `self`.
+
+    - `__exit__(self, exc_type, exc_val, exc_tb)`: Executed when exiting the `with` block (normally or due to an exception). It receives exception details (type, value, traceback) if any occurred and performs the cleanup. Returning `True` from `__exit__` suppresses the exception.
+
+  - **Using `contextlib.contextmanager`:** A decorator that lets you create a context manager more easily using a generator function with a single `yield`. Code before `yield` acts as `__enter__`, code after `yield` (in a `finally` block) acts as `__exit__`.
+
 - **Example Snippet (File Handling & Custom Context Manager):**
-    
-    ```
+
+    ```python
     # --- Example 1: Standard file handling with 'with' ---
     try:
         with open("example.txt", "w") as f:
@@ -434,31 +429,30 @@
     # ...block finished.
     # Block Timer took 0.5XXX seconds
     ```
-    
 
 ## **1.7 Advanced Error Handling**
 
 - **Objective:** Learn to create and use custom exceptions for more specific error reporting.
-    
+
 - **Topics:**
-    
-    - **`try...except`:** The fundamental block for handling errors. Code that might raise an exception goes in the `try` part, and code to run if a specific error occurs goes in the `except` part.
-        
-    - **Handling specific exception types vs. broad `Exception`:** It's best practice to catch _specific_ errors you anticipate (like `ValueError` or `FileNotFoundError`). Catching a broad `Exception` can hide bugs or catch errors you didn't intend to handle (like `SystemExit` or `KeyboardInterrupt`), making debugging harder.
-        
-    - `else` block: Code that runs only if no exceptions occurred in the `try` block.
-        
-    - `finally` block: Code that runs _always_ (cleanup).
-        
-    - `raise` is used to raise Exceptions.
-        
-    - Custom exception classes can be created inheriting from `Exception` or more specific built-ins.
-        
-    - **Chaining exceptions (`raise NewException from original_exception`):** This preserves the original error context, making it easier to debug the root cause when wrapping exceptions.
-        
+
+  - **`try...except`:** The fundamental block for handling errors. Code that might raise an exception goes in the `try` part, and code to run if a specific error occurs goes in the `except` part.
+
+  - **Handling specific exception types vs. broad `Exception`:** It's best practice to catch _specific_ errors you anticipate (like `ValueError` or `FileNotFoundError`). Catching a broad `Exception` can hide bugs or catch errors you didn't intend to handle (like `SystemExit` or `KeyboardInterrupt`), making debugging harder.
+
+  - `else` block: Code that runs only if no exceptions occurred in the `try` block.
+
+  - `finally` block: Code that runs _always_ (cleanup).
+
+  - `raise` is used to raise Exceptions.
+
+  - Custom exception classes can be created inheriting from `Exception` or more specific built-ins.
+
+  - **Chaining exceptions (`raise NewException from original_exception`):** This preserves the original error context, making it easier to debug the root cause when wrapping exceptions.
+
 - **Example Snippet (Custom Exception & Chaining):**
-    
-    ```
+
+    ```python
     # --- Example 1: Custom Exception & Chaining ---
     class InsufficientFundsError(Exception):
         """Custom exception for bank account operations."""
@@ -521,35 +515,34 @@
     #   --> Original Cause: InsufficientFundsError: Attempted to withdraw 150, but only 100 available.
     # Current balance: 100
     ```
-    
 
 ## **1.8 Pythonic Code**
 
 - **Objective:** Embrace Python's idioms for more readable, concise, and efficient code.
-    
+
 - **Topics:**
-    
-    - **List Comprehensions:** `[expr for item in iterable if condition]`.
-        
-    - **Dictionary Comprehensions:** `{key_expr: val_expr for item in iterable if condition}`.
-        
-    - **Set Comprehensions:** `{expr for item in iterable if condition}`.
-        
-    - **Generator Expressions:** `(expr for item in iterable if condition)` - memory efficient, especially useful for large sequences or when you don't need the result list in memory.
-        
-    - Using `enumerate` for index and value in loops.
-        
-    - Using `zip` to iterate over multiple sequences simultaneously.
-        
-    - Avoiding manual index manipulation in loops where possible.
-        
-    - Truthy and Falsy values (checking for empty sequences/collections directly instead of using `len()`).
-        
-    - **f-Strings:** Prefer f-strings (`f"..."`) for embedding expressions inside string literals, as they are generally the most concise and readable method.
-        
+
+  - **List Comprehensions:** `[expr for item in iterable if condition]`.
+
+  - **Dictionary Comprehensions:** `{key_expr: val_expr for item in iterable if condition}`.
+
+  - **Set Comprehensions:** `{expr for item in iterable if condition}`.
+
+  - **Generator Expressions:** `(expr for item in iterable if condition)` - memory efficient, especially useful for large sequences or when you don't need the result list in memory.
+
+  - Using `enumerate` for index and value in loops.
+
+  - Using `zip` to iterate over multiple sequences simultaneously.
+
+  - Avoiding manual index manipulation in loops where possible.
+
+  - Truthy and Falsy values (checking for empty sequences/collections directly instead of using `len()`).
+
+  - **f-Strings:** Prefer f-strings (`f"..."`) for embedding expressions inside string literals, as they are generally the most concise and readable method.
+
 - **Example Snippet (Pythonic Examples):**
-    
-    ```
+
+    ```python
     # --- Example 1a: Non-Pythonic loop (Squaring) ---
     numbers = [1, 2, 3, 4, 5]
     squares = []
@@ -605,29 +598,28 @@
     total_sum_gen = sum(x*x for x in big_numbers)
     print(f"Sum of squares (via generator): {total_sum_gen}")
     ```
-    
 
 ## **1.9 Style Guides & Linters**
 
 - **Objective:** Understand the importance of consistent code style and how tools can help enforce it.
-    
+
 - **Topics:**
-    
-    - **Linters:** Tools that analyze code for style errors and potential bugs (can be configured as pre-commit hooks).
-        
-        - `Flake8`: Combines `PyFlakes` (error checking), `pycodestyle` (PEP 8 checking), and McCabe (complexity checking).
-            
-        - `Pylint`: More extensive checks, highly configurable, can be "noisy".
-            
-    - **Formatters:** Tools that automatically reformat code to comply with a style guide.
-        
-        - `Black`: The "uncompromising code formatter", enforces a strict subset of PEP 8.
-            
-    - Integrating linters/formatters into development workflow (editor integration, pre-commit hooks).
-        
+
+  - **Linters:** Tools that analyze code for style errors and potential bugs (can be configured as pre-commit hooks).
+
+    - `Flake8`: Combines `PyFlakes` (error checking), `pycodestyle` (PEP 8 checking), and McCabe (complexity checking).
+
+    - `Pylint`: More extensive checks, highly configurable, can be "noisy".
+
+  - **Formatters:** Tools that automatically reformat code to comply with a style guide.
+
+    - `Black`: The "uncompromising code formatter", enforces a strict subset of PEP 8.
+
+  - Integrating linters/formatters into development workflow (editor integration, pre-commit hooks).
+
 - **Exercise:** Install `flake8` and `black` (e.g., `pip install flake8 black`). Save the following code into a Python file (e.g., `style_practice.py`) and run `flake8 style_practice.py` to see the style/error reports. Then, run `black style_practice.py` to automatically format the code. Run `flake8` again to see the difference.
-    
-    ```
+
+    ```python
     # --- Code for Linter/Formatter Exercise ---
     import sys
     
@@ -648,34 +640,33 @@
     
     # Missing newline at end of file (Flake8 might warn)
     ```
-    
 
 ## **1.10 Naming Conventions and Code Readability**
 
 - **Objective:** Emphasize the critical role of clear, descriptive naming in writing understandable code.
-    
+
 - **Topics:**
-    
-    - PEP 8 Naming Conventions:
-        
-        - `lower_case_with_underscores` for functions, methods, variables (snake_case). Also for filenames.
-            
-        - `UPPER_CASE_WITH_UNDERSCORES` for constants.
-            
-        - `CapitalizedWords` (CamelCase or PascalCase) for classes.
-            
-        - `_leading_underscore`: Internal use/protected convention.
-            
-        - `__leading_double_underscore`: Name mangling for class attributes.
-            
-        - `__leading_and_trailing_double_underscore__`: "Magic" objects or attributes (dunders).
-            
-    - Choosing descriptive names: Avoid single letters (except simple loop counters), abbreviations, ambiguity. Name reflects purpose.
-        
-    - Function/Method Naming: Often verbs or verb phrases (e.g., `calculate_total`, `is_valid`).
-        
-    - Variable Naming: Often nouns or noun phrases (e.g., `user_name`, `total_count`).
-        
-    - Boolean variables/functions: Often start with `is_`, `has_`, `should_` (e.g., `is_empty`, `has_permission`).
-        
-    - Writing clear comments: Explain _why_, not _what_ (if the code is already clear). Document complex logic or assumptions. Docstrings for functions/classes/modules.
+
+  - PEP 8 Naming Conventions:
+
+    - `lower_case_with_underscores` for functions, methods, variables (snake_case). Also for filenames.
+
+    - `UPPER_CASE_WITH_UNDERSCORES` for constants.
+
+    - `CapitalizedWords` (CamelCase or PascalCase) for classes.
+
+    - `_leading_underscore`: Internal use/protected convention.
+
+    - `__leading_double_underscore`: Name mangling for class attributes.
+
+    - `__leading_and_trailing_double_underscore__`: "Magic" objects or attributes (dunders).
+
+  - Choosing descriptive names: Avoid single letters (except simple loop counters), abbreviations, ambiguity. Name reflects purpose.
+
+  - Function/Method Naming: Often verbs or verb phrases (e.g., `calculate_total`, `is_valid`).
+
+  - Variable Naming: Often nouns or noun phrases (e.g., `user_name`, `total_count`).
+
+  - Boolean variables/functions: Often start with `is_`, `has_`, `should_` (e.g., `is_empty`, `has_permission`).
+
+  - Writing clear comments: Explain _why_, not _what_ (if the code is already clear). Document complex logic or assumptions. Docstrings for functions/classes/modules.
