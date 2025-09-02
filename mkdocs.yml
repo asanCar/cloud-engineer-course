@@ -8,7 +8,12 @@ nav:
       - Exercises: module_1/chapter_1_exercise.md
     - Chapter 2 - Environment, Dependencies & Build Tools: module_1/chapter_2.md
     - Chapter 3 - Testing Strategies: module_1/chapter_3.md
-    - Chapter 4 - : module_1/chapter_4.md
+    - Chapter 4 - Project - Refactoring & Enhancing an Existing Application:
+      - Project 1 - (Pending to Implement): module_1/chapter_4_project1.md
+      - Project 2 - Refactoring & Enhancing a Log File Analyzer: module_1/chapter_4_project2.md
+  - Module 5 - Kubernetes & AWS EKS: 
+    - Chapter 14 - Kubernetes Fundamentals: module_5/chapter_14.md
+    - Chapter 15 - Introduction to Amazon EKS: module_5/chapter_15.md
 theme: 
   name: material
 markdown_extensions:
