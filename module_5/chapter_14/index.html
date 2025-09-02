@@ -1,0 +1,1572 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../module_1/chapter_4_project2/">
+      
+      
+        <link rel="next" href="../chapter_15/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.18">
+    
+    
+      
+        <title>Chapter 14 - Kubernetes Fundamentals - Cloud Engineer course</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7e37652d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-14-kubernetes-fundamentals" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Cloud Engineer course" class="md-header__button md-logo" aria-label="Cloud Engineer course" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Cloud Engineer course
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 14 - Kubernetes Fundamentals
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Cloud Engineer course" class="md-nav__button md-logo" aria-label="Cloud Engineer course" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Cloud Engineer course
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Table of contents
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Module 1 - Advanced Programming & Best Practices
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Module 1 - Advanced Programming & Best Practices
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 - (Python) Language Deep Dive & Idiomatic Code
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            Chapter 1 - (Python) Language Deep Dive & Idiomatic Code
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../module_1/chapter_1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Content
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../module_1/chapter_1_quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quiz
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../module_1/chapter_1_exercise/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Exercises
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../module_1/chapter_2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 - Environment, Dependencies & Build Tools
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../module_1/chapter_3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 - Testing Strategies
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 - Project - Refactoring & Enhancing an Existing Application
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            Chapter 4 - Project - Refactoring & Enhancing an Existing Application
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../module_1/chapter_4_project1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Project 1 - (Pending to Implement)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../module_1/chapter_4_project2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Project 2 - Refactoring & Enhancing a Log File Analyzer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Module 5 - Kubernetes & AWS EKS
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Module 5 - Kubernetes & AWS EKS
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Chapter 14 - Kubernetes Fundamentals
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 14 - Kubernetes Fundamentals
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#141-kubernetes-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      14.1: Kubernetes Architecture
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#142-core-kubernetes-objects-declarative-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      14.2: Core Kubernetes Objects: Declarative Configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#143-controllers-workload-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      14.3: Controllers &amp; Workload Management
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#144-networking-in-kubernetes" class="md-nav__link">
+    <span class="md-ellipsis">
+      14.4: Networking in Kubernetes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#145-storage-in-kubernetes" class="md-nav__link">
+    <span class="md-ellipsis">
+      14.5: Storage in Kubernetes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#146-configuration-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      14.6: Configuration Management
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#147-advanced-object-concepts-finalizers-owner-references-garbage-collection" class="md-nav__link">
+    <span class="md-ellipsis">
+      14.7: Advanced Object Concepts (Finalizers, Owner References, Garbage Collection)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#149-helm-basics" class="md-nav__link">
+    <span class="md-ellipsis">
+      14.9: Helm Basics
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter_15/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 15 - Introduction to Amazon EKS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#141-kubernetes-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      14.1: Kubernetes Architecture
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#142-core-kubernetes-objects-declarative-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      14.2: Core Kubernetes Objects: Declarative Configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#143-controllers-workload-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      14.3: Controllers &amp; Workload Management
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#144-networking-in-kubernetes" class="md-nav__link">
+    <span class="md-ellipsis">
+      14.4: Networking in Kubernetes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#145-storage-in-kubernetes" class="md-nav__link">
+    <span class="md-ellipsis">
+      14.5: Storage in Kubernetes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#146-configuration-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      14.6: Configuration Management
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#147-advanced-object-concepts-finalizers-owner-references-garbage-collection" class="md-nav__link">
+    <span class="md-ellipsis">
+      14.7: Advanced Object Concepts (Finalizers, Owner References, Garbage Collection)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#149-helm-basics" class="md-nav__link">
+    <span class="md-ellipsis">
+      14.9: Helm Basics
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="chapter-14-kubernetes-fundamentals">Chapter 14: Kubernetes Fundamentals</h1>
+<p><strong>Estimated Time:</strong> 15 hours</p>
+<p><strong>Objective:</strong> Understand the core concepts, architecture, and basic objects of Kubernetes, enabling you to interact with and comprehend Kubernetes clusters.</p>
+<h2 id="141-kubernetes-architecture">14.1: Kubernetes Architecture</h2>
+<ul>
+<li>
+<p><strong>Objective:</strong> Learn about the main components that make up a Kubernetes cluster and their roles.</p>
+</li>
+<li>
+<p><strong>Key Concepts:</strong></p>
+</li>
+<li>
+<p><strong>Control Plane (Master Nodes):</strong> The brain of the cluster, making global decisions (e.g., scheduling) and detecting/responding to cluster events.</p>
+<ul>
+<li>
+<p><strong><code>kube-apiserver</code>:</strong> The frontend for the Kubernetes control plane. It exposes the Kubernetes API, which is how users, management devices, and command-line interfaces interact with the cluster.</p>
+</li>
+<li>
+<p><strong><code>etcd</code>:</strong> A consistent and highly-available key-value store used as Kubernetes' backing store for all cluster data (e.g., configurations, state).</p>
+</li>
+<li>
+<p><strong><code>kube-scheduler</code>:</strong> Watches for newly created Pods that have no Node assigned, and selects a Node for them to run on based on resource requirements, policies, and affinity/anti-affinity specifications.</p>
+</li>
+<li>
+<p><strong><code>kube-controller-manager</code>:</strong> Runs controller processes. Controllers are control loops that watch the shared state of the cluster through the <code>kube-apiserver</code> and make changes attempting to move the current state towards the desired state. Examples include Node controller, Replication controller, Endpoints controller, and Service Account &amp; Token controllers.</p>
+</li>
+<li>
+<p><strong><code>cloud-controller-manager</code> (Optional):</strong> Embeds cloud-specific control logic. It allows you to link your cluster into your cloud provider's API, and separates out the components that interact with that cloud platform from components that just interact with your cluster.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Node (Worker Nodes):</strong> Machines (VMs or physical servers) where your applications (containerized in Pods) run.</p>
+<ul>
+<li>
+<p><strong><code>kubelet</code>:</strong> An agent that runs on each node in the cluster. It makes sure that containers are running in a Pod as specified by the control plane.</p>
+</li>
+<li>
+<p><strong><code>kube-proxy</code>:</strong> Running on each Node, <code>kube-proxy</code> is responsible for the actual implementation of Kubernetes Services. It watches for changes to Service and Endpoint objects and maintains network rules on the Node (e.g., using iptables, IPVS) to enable these virtual IP addresses for Services to function.</p>
+</li>
+<li>
+<p><strong>Container Runtime:</strong> The software responsible for running containers (e.g., Docker, containerd, CRI-O). Kubernetes is pluggable with different container runtimes via the Container Runtime Interface (CRI).</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="142-core-kubernetes-objects-declarative-configuration">14.2: Core Kubernetes Objects: Declarative Configuration</h2>
+<ul>
+<li>
+<p><strong>Objective:</strong> Understand the fundamental Kubernetes objects used to define and manage applications.</p>
+</li>
+<li>
+<p><strong>Key Concepts:</strong></p>
+</li>
+<li>
+<p><strong>Declarative Model:</strong> You declare the <em>desired state</em> of your application or system in YAML or JSON manifest files, and Kubernetes controllers work to achieve and maintain that state.</p>
+</li>
+<li>
+<p><strong>Pods:</strong></p>
+<ul>
+<li>
+<p>The smallest and simplest unit in the Kubernetes object model that you create or deploy.</p>
+</li>
+<li>
+<p>Represents a single instance of a running process in your cluster.</p>
+</li>
+<li>
+<p>Can contain one or more tightly coupled containers that share resources like network (IP address, port space) and storage (volumes).</p>
+</li>
+<li>
+<p>Pods are ephemeral; they can be created and destroyed. If a Node fails, Pods on that Node are lost. Higher-level controllers (like Deployments) manage recreating Pods.</p>
+</li>
+<li>
+<p><strong>Pod Lifecycle:</strong> Pending, Running, Succeeded, Failed, Unknown.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Labels and Selectors:</strong></p>
+<ul>
+<li>
+<p><strong>Labels:</strong> Key/value pairs that are attached to objects, such as Pods. They are used to organize and to select subsets of objects.</p>
+</li>
+<li>
+<p><strong>Selectors:</strong> Used by controllers and Services to identify the set of objects (e.g., Pods) they operate on. Label selectors are the core grouping primitive.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Annotations:</strong></p>
+<ul>
+<li>
+<p>Key/value pairs used to attach arbitrary non-identifying metadata to objects.</p>
+</li>
+<li>
+<p>Can be used by tools and libraries to store custom information (e.g., build information, release notes, pointers to logging/monitoring systems).</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Namespaces:</strong></p>
+<ul>
+<li>
+<p>A way to divide cluster resources between multiple users or teams (via resource quotas).</p>
+</li>
+<li>
+<p>Provide a scope for names. Resource names need to be unique within a namespace, but not across namespaces.</p>
+</li>
+<li>
+<p>Not a way to provide strong security isolation, but useful for organization. Common namespaces: <code>default</code>, <code>kube-system</code>, <code>kube-public</code>.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="143-controllers-workload-management">14.3: Controllers &amp; Workload Management</h2>
+<ul>
+<li>
+<p><strong>Objective:</strong> Learn about controllers that manage Pods and ensure the desired state of your application.</p>
+</li>
+<li>
+<p><strong>Key Concepts:</strong></p>
+</li>
+<li>
+<p><strong>ReplicaSets:</strong></p>
+<ul>
+<li>
+<p>Ensures that a specified number of Pod replicas are running at any given time.</p>
+</li>
+<li>
+<p>If there are too many Pods, it terminates some. If there are too few, it starts more.</p>
+</li>
+<li>
+<p>While generally not used directly, <code>ReplicaSets</code> are crucial for <code>Deployments</code>. Each version or revision of a <code>Deployment</code> is typically represented by a distinct <code>ReplicaSet</code>, enabling <code>Deployments</code> to manage application versions and facilitate rollbacks.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Deployments:</strong></p>
+<ul>
+<li>
+<p>Provide declarative updates for Pods and ReplicaSets.</p>
+</li>
+<li>
+<p>You describe a desired state in a Deployment, and the Deployment Controller changes the actual state to the desired state at a controlled rate.</p>
+</li>
+<li>
+<p>Features: Rolling updates (zero-downtime updates), rollbacks to previous versions (by managing different ReplicaSets), scaling applications up or down.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>DaemonSets:</strong></p>
+<ul>
+<li>
+<p>Ensures that all (or some specified) Nodes run a copy of a Pod.</p>
+</li>
+<li>
+<p>Useful for cluster-level daemons like log collectors (e.g., Fluentd), node monitoring agents (e.g., Prometheus Node Exporter), or network plugins.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>StatefulSets:</strong></p>
+<ul>
+<li>
+<p>Used to manage stateful applications (e.g., databases like MySQL, Kafka).</p>
+</li>
+<li>
+<p>Pods get stable, unique network identifiers (e.g., <code>my-app-0</code>, <code>my-app-1</code>).</p>
+</li>
+<li>
+<p>Pods get stable, persistent storage linked to their identity.</p>
+</li>
+<li>
+<p>Ensures predictable and orderly lifecycle operations: Pods are deployed and scaled in a fixed order, and rolling updates are performed sequentially and automatically, one Pod at a time (or in controlled batches), to maintain application stability.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Jobs &amp; CronJobs:</strong></p>
+<ul>
+<li>
+<p><strong>Jobs:</strong> Create one or more Pods and ensure that a specified number of them successfully terminate. Useful for batch processing or one-off tasks.</p>
+</li>
+<li>
+<p><strong>CronJobs:</strong> Create Jobs on a time-based schedule (like cron in Linux).</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="144-networking-in-kubernetes">14.4: Networking in Kubernetes</h2>
+<ul>
+<li>
+<p><strong>Objective:</strong> Understand how networking is handled within a Kubernetes cluster, enabling communication between Pods and external access.</p>
+</li>
+<li>
+<p><strong>Key Concepts:</strong></p>
+</li>
+<li>
+<p><strong>Services:</strong></p>
+<ul>
+<li>
+<p>An abstract way to expose an application running on a set of Pods as a network service.</p>
+</li>
+<li>
+<p>Provides a stable IP address and DNS name for a set of Pods (whose IPs can change).</p>
+</li>
+<li>
+<p>Uses label selectors to find its target Pods.</p>
+</li>
+<li>
+<p><strong>Types of Services:</strong></p>
+</li>
+<li>
+<p><code>ClusterIP</code>: Exposes the Service on a cluster-internal IP. Only reachable from within the cluster. (Default type)</p>
+</li>
+<li>
+<p><code>NodePort</code>: Exposes the Service on each Node’s IP at a static port.</p>
+</li>
+<li>
+<p><code>LoadBalancer</code>: Exposes the Service externally using a cloud provider's load balancer.</p>
+</li>
+<li>
+<p><code>ExternalName</code>: Maps the Service to the contents of the <code>externalName</code> field (e.g., <code>foo.bar.example.com</code>), by returning a <code>CNAME</code> record with its value. No proxying of any kind is set up.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Ingress:</strong></p>
+<ul>
+<li>
+<p>An API object that manages external access to the services in a cluster, typically HTTP and HTTPS.</p>
+</li>
+<li>
+<p>Can provide load balancing, SSL termination, and name-based virtual hosting.</p>
+</li>
+<li>
+<p>Requires an <strong>Ingress Controller</strong> (e.g., NGINX Ingress Controller, Traefik, AWS Load Balancer Controller) to be running in the cluster to fulfill the Ingress rules.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Gateway API:</strong></p>
+<ul>
+<li>
+<p>An official Kubernetes project representing the next generation of APIs for service networking (Ingress, Load Balancing, etc.).</p>
+</li>
+<li>
+<p>Aims to be more expressive, role-oriented (separating concerns of cluster operator, infrastructure provider, and application developer), and extensible than Ingress.</p>
+</li>
+<li>
+<p><strong>Key Resources:</strong> <code>GatewayClass</code>, <code>Gateway</code>, <code>HTTPRoute</code>, <code>TCPRoute</code>, <code>TLSRoute</code>, <code>GRPCRoute</code>, etc.</p>
+</li>
+<li>
+<p><strong><code>GatewayClass</code></strong>: Defines a set of Gateways that share a common configuration and behavior. It's typically managed by the infrastructure provider.</p>
+<pre><code>    ```
+    # gatewayclass-example.yaml
+    apiVersion: gateway.networking.k8s.io/v1
+    kind: GatewayClass
+    metadata:
+      name: my-internet-gatewayclass
+    spec:
+      controllerName: example.com/gateway-controller # Identifies the controller that manages this class
+    # ---
+    ```
+</code></pre>
+</li>
+<li>
+<p><strong><code>Gateway</code></strong>: Requests a point where traffic can be translated to Services within the cluster. It's typically managed by a cluster operator and references a <code>GatewayClass</code>.</p>
+<pre><code>    ```
+    # gateway-example.yaml
+    apiVersion: gateway.networking.k8s.io/v1
+    kind: Gateway
+    metadata:
+      name: my-internet-gateway
+      namespace: networking-infra # Gateways are often in a dedicated infrastructure namespace
+    spec:
+      gatewayClassName: my-internet-gatewayclass
+      listeners:
+      - name: http
+        protocol: HTTP
+        port: 80
+        allowedRoutes:
+          namespaces:
+            from: Selector # Allows routes from namespaces matching a selector
+            selector:
+              matchLabels:
+                expose-via-internet-gateway: "true"
+      - name: https
+        protocol: HTTPS
+        port: 443
+        tls:
+          mode: Terminate
+          certificateRefs:
+          - kind: Secret
+            name: my-tls-secret # Secret containing TLS certificate and key
+        allowedRoutes:
+          namespaces:
+            from: Selector
+            selector:
+              matchLabels:
+                expose-via-internet-gateway: "true"
+    # ---
+    ```
+</code></pre>
+</li>
+<li>
+<p><strong><code>HTTPRoute</code></strong>: Defines rules for routing HTTP traffic from a Gateway to backend Services. It's typically managed by application developers.</p>
+<pre><code>    ```
+    # httproute-example.yaml
+    apiVersion: gateway.networking.k8s.io/v1
+    kind: HTTPRoute
+    metadata:
+      name: my-app-route
+      namespace: my-application # Routes are often in the application's namespace
+      labels:
+        expose-via-internet-gateway: "true" # Matches Gateway's allowedRoutes selector
+    spec:
+      parentRefs:
+      - name: my-internet-gateway
+        namespace: networking-infra # Points to the Gateway in its namespace
+      hostnames:
+      - "app.example.com"
+      rules:
+      - matches:
+        - path:
+            type: PathPrefix
+            value: /login
+        backendRefs:
+        - name: login-service # Kubernetes Service name
+          port: 8080
+      - matches:
+        - path:
+            type: PathPrefix
+            value: /
+        backendRefs:
+        - name: main-app-service
+          port: 80
+    # ---
+    ```
+</code></pre>
+</li>
+<li>
+<p>Other route types like <code>TCPRoute</code>, <code>TLSRoute</code>, and <code>GRPCRoute</code> handle different protocols.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Pod-to-Pod Communication:</strong> Every Pod gets its own unique IP address. Pods can communicate with all other Pods on all Nodes without NAT.</p>
+</li>
+<li>
+<p><strong>Service Discovery:</strong> Kubernetes provides DNS-based service discovery (e.g., a Service named <code>my-svc</code> in namespace <code>my-ns</code> can be reached at <code>my-svc.my-ns.svc.cluster.local</code>).</p>
+</li>
+</ul>
+<h2 id="145-storage-in-kubernetes">14.5: Storage in Kubernetes</h2>
+<ul>
+<li>
+<p><strong>Objective:</strong> Learn how Kubernetes manages storage for applications, especially stateful ones.</p>
+</li>
+<li>
+<p><strong>Key Concepts:</strong></p>
+</li>
+<li>
+<p><strong>Volumes:</strong></p>
+<ul>
+<li>
+<p>Volume lifecycle is tied to the Pod lifecycle (e.g., an <code>emptyDir</code> volume is created when a Pod is assigned to a Node, and exists as long as that Pod is running on that node; when a Pod is deleted, the <code>emptyDir</code> volume is deleted).</p>
+</li>
+<li>
+<p><strong>Common Volume Types:</strong></p>
+</li>
+<li>
+<p><code>emptyDir</code>: A temporary directory that is created when a Pod is assigned to a Node.</p>
+</li>
+<li>
+<p><code>hostPath</code>: Mounts a file or directory from the host Node's filesystem into your Pod (tied to Node lifecycle).</p>
+</li>
+<li>
+<p>Cloud provider specific volumes (e.g., <code>awsElasticBlockStore</code>, <code>gcePersistentDisk</code>, <code>azureDisk</code>).</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>PersistentVolumes (PVs) and PersistentVolumeClaims (PVCs):</strong></p>
+<ul>
+<li>
+<p><strong>PersistentVolume (PV):</strong> A piece of storage in the cluster that has been provisioned by an administrator or dynamically provisioned using StorageClasses. It is a resource in the cluster just like a Node.</p>
+</li>
+<li>
+<p><strong>PersistentVolumeClaim (PVC):</strong> A request for storage by a user. It is similar to a Pod. Pods consume Node resources and PVCs consume PV resources.</p>
+</li>
+<li>
+<p>This abstraction decouples the provisioning of storage from its consumption, allowing Pods to request storage without needing to know the underlying storage details.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>StorageClasses:</strong></p>
+<ul>
+<li>
+<p>Provide a way for administrators to describe the "classes" of storage they offer. Different classes might map to quality-of-service levels, or to backup policies, or to arbitrary policies determined by the cluster administrators.</p>
+</li>
+<li>
+<p>Enable dynamic provisioning of PVs: when a PVC requests a StorageClass, a PV can be automatically created to fulfill that claim.</p>
+</li>
+<li>
+<p><strong>Example <code>StorageClass</code>:</strong></p>
+<pre><code>```
+# storageclass-example.yaml
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: standard-ssd # Name of the storage class
+provisioner: kubernetes.io/aws-ebs # Specific to AWS EBS, other providers have different provisioners
+parameters:
+  type: gp3 # General Purpose SSD (gp3) volume type for AWS
+  fsType: ext4 # Filesystem type
+reclaimPolicy: Retain # Or Delete. Retain means the PV is kept after PVC is deleted.
+allowVolumeExpansion: true
+mountOptions:
+  - debug
+volumeBindingMode: Immediate # Or WaitForFirstConsumer
+# ---
+```
+</code></pre>
+</li>
+<li>
+<p>Example PersistentVolumeClaim (PVC):</p>
+<pre><code>This PVC requests storage from the standard-ssd StorageClass defined above.
+
+```
+# pvc-example.yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: my-app-pvc # Name of the PVC
+  namespace: my-application
+spec:
+  accessModes:
+    - ReadWriteOnce # Can be mounted as read-write by a single node
+                    # Other modes: ReadOnlyMany, ReadWriteMany, ReadWriteOncePod
+  resources:
+    requests:
+      storage: 10Gi # Request 10 GiB of storage
+  storageClassName: standard-ssd # Requests storage from this StorageClass
+# ---
+```
+</code></pre>
+</li>
+<li>
+<p>Example Pod using the PVC:</p>
+<pre><code>This Pod mounts the volume claimed by my-app-pvc into one of its containers.
+
+```
+# pod-with-pvc-example.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-app-pod
+  namespace: my-application
+spec:
+  containers:
+    - name: my-app-container
+      image: nginx:latest # Example image
+      ports:
+        - containerPort: 80
+      volumeMounts:
+        - name: my-app-storage # Name of the volumeMount, must match a volume name below
+          mountPath: /usr/share/nginx/html # Path inside the container where the volume is mounted
+  volumes:
+    - name: my-app-storage # Name of the volume, referenced by volumeMounts
+      persistentVolumeClaim:
+        claimName: my-app-pvc # Name of the PVC to use
+# ---
+```
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="146-configuration-management">14.6: Configuration Management</h2>
+<ul>
+<li>
+<p><strong>Objective:</strong> Understand how to manage application configuration and sensitive data in Kubernetes.</p>
+</li>
+<li>
+<p><strong>Key Concepts:</strong></p>
+</li>
+<li>
+<p><strong>ConfigMaps:</strong></p>
+<ul>
+<li>
+<p>Used to store non-confidential configuration data in key-value pairs.</p>
+</li>
+<li>
+<p>Pods can consume ConfigMaps as environment variables, command-line arguments, or as configuration files in a volume.</p>
+</li>
+<li>
+<p>Decouples configuration from container images, making applications more portable.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Secrets:</strong></p>
+<ul>
+<li>
+<p>Used to store and manage sensitive information, such as passwords, OAuth tokens, and SSH keys.</p>
+</li>
+<li>
+<p>Storing confidential information in a Secret is safer and more flexible than putting it verbatim in a Pod definition or in a container image.</p>
+</li>
+<li>
+<p>Can be mounted as data volumes or exposed as environment variables to containers in a Pod.</p>
+</li>
+<li>
+<p>Data is stored base64-encoded by default in <code>etcd</code>, but additional encryption at rest for <code>etcd</code> is recommended for production.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Updating ConfigMaps and Secrets in Pods:</strong></p>
+<ul>
+<li>
+<p>When a ConfigMap or Secret is updated, Pods using it as <strong>environment variables</strong> will <em>not</em> automatically see the changes. A Pod restart (e.g., by deleting the Pod and letting its controller recreate it) is required to pick up new environment variable values.</p>
+</li>
+<li>
+<p>When a ConfigMap or Secret is mounted as a <strong>volume</strong> (e.g., as files), the data mounted into the Pod is updated periodically by the <code>kubelet</code> (the exact delay can vary but is typically within a minute or two). However, the application running inside the container needs to be able to detect and reload the updated configuration files from the mounted volume. If the application doesn't support live reloading, a Pod restart might still be necessary for the application to use the new values.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="147-advanced-object-concepts-finalizers-owner-references-garbage-collection">14.7: Advanced Object Concepts (Finalizers, Owner References, Garbage Collection)</h2>
+<ul>
+<li>
+<p><strong>Objective:</strong> Understand how Kubernetes manages the lifecycle and cleanup of objects, particularly through finalizers and garbage collection.</p>
+</li>
+<li>
+<p><strong>Key Concepts:</strong></p>
+</li>
+<li>
+<p><strong>Finalizers:</strong></p>
+<ul>
+<li>
+<p>Key-value annotations that signal to Kubernetes that specific cleanup actions must be performed <em>before</em> an object can be fully deleted.</p>
+</li>
+<li>
+<p>When an object with a finalizer is marked for deletion, the <code>deletionTimestamp</code> is set, but the object remains until all its finalizers are removed by their respective controllers.</p>
+</li>
+<li>
+<p>Used by controllers to release external resources (e.g., a cloud load balancer associated with a Service, or an EBS volume associated with a PV) or perform other pre-deletion tasks.</p>
+</li>
+<li>
+<p><strong>Example A (PV Protection):</strong> A <code>kubernetes.io/pv-protection</code> finalizer on a PersistentVolume (PV) prevents it from being deleted if it's still bound to a PersistentVolumeClaim (PVC). The PV controller removes this finalizer only after the PV is no longer bound.</p>
+</li>
+<li>
+<p><strong>Example B (Namespace Deletion):</strong> When a Namespace is deleted, it typically has a finalizer like <code>kubernetes.io/namespace</code>. The namespace controller uses this to ensure all resources within that namespace (Pods, Services, Deployments, etc.) are deleted before the Namespace object itself is removed from the system. If some resources cannot be deleted (e.g., due to other finalizers on them), the Namespace will remain in a "Terminating" state.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Owner References and Garbage Collection:</strong></p>
+<ul>
+<li>
+<p>Kubernetes uses owner references to manage the lifecycle of dependent objects. When an owner object is deleted, its dependent objects (those with an owner reference pointing to it) can be automatically garbage collected.</p>
+</li>
+<li>
+<p><strong>Cascading Deletion:</strong></p>
+</li>
+<li>
+<p><strong>Foreground Cascading Deletion:</strong> The owner object remains in a "deletion in progress" state until all its dependents are deleted.</p>
+</li>
+<li>
+<p><strong>Background Cascading Deletion:</strong> The owner object is deleted immediately, and the garbage collector deletes the dependents in the background.</p>
+</li>
+<li>
+<p><strong>Orphan Dependents:</strong> If <code>propagationPolicy</code> is set to <code>Orphan</code>, dependent objects are not deleted when the owner is deleted.</p>
+</li>
+<li>
+<p><code>metadata.ownerReferences</code> field in an object specifies its owner(s). It includes the <code>apiVersion</code>, <code>kind</code>, <code>name</code>, and <code>uid</code> of the owner.</p>
+</li>
+<li>
+<p><code>blockOwnerDeletion</code>: A boolean in <code>ownerReferences</code> that, if true, prevents the owner from being deleted if this dependent object still exists.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>14.8: Common <code>kubectl</code> Commands</strong></p>
+<ul>
+<li>
+<p><strong>Objective:</strong> Learn the basic <code>kubectl</code> commands for interacting with a Kubernetes cluster.</p>
+</li>
+<li>
+<p><strong>Key Concepts:</strong></p>
+</li>
+<li>
+<p><code>kubectl</code> is the primary command-line tool for running commands against Kubernetes clusters.</p>
+</li>
+<li>
+<p><strong>Syntax:</strong> <code>kubectl [command] [TYPE] [NAME] [flags]</code></p>
+</li>
+<li>
+<p><strong>Common Commands:</strong></p>
+<ul>
+<li>
+<p><code>kubectl get &lt;pods|services|deployments|nodes|etc.&gt;</code>: List resources.</p>
+</li>
+<li>
+<p>Flags: <code>-n &lt;namespace&gt;</code>, <code>-o wide</code>, <code>-o yaml</code>, <code>-l &lt;label_selector&gt;</code></p>
+</li>
+<li>
+<p><code>kubectl describe &lt;pod|service|etc.&gt; &lt;resource_name&gt;</code>: Show detailed information about a resource.</p>
+</li>
+<li>
+<p><code>kubectl create -f &lt;filename.yaml&gt;</code>: Create resources from a file or stdin.</p>
+</li>
+<li>
+<p><code>kubectl apply -f &lt;filename.yaml&gt;</code>: Apply a configuration to a resource by filename or stdin (declarative, preferred for updates).</p>
+</li>
+<li>
+<p><code>kubectl delete &lt;pod|service|etc.&gt; &lt;resource_name&gt;</code> or <code>kubectl delete -f &lt;filename.yaml&gt;</code>: Delete resources.</p>
+</li>
+<li>
+<p><code>kubectl logs &lt;pod_name&gt; [-c &lt;container_name&gt;]</code>: Print the logs for a container in a pod.</p>
+</li>
+<li>
+<p>Flags: <code>-f</code> (follow), <code>-p</code> (previous instance).</p>
+</li>
+<li>
+<p><code>kubectl exec -it &lt;pod_name&gt; -- /bin/bash</code> (or <code>sh</code>): Execute a command in a container (interactive terminal).</p>
+</li>
+<li>
+<p><code>kubectl debug &lt;pod_name | node_name&gt; [-c &lt;container_name&gt;] [--image=&lt;debug_image&gt;] -- /bin/bash</code>: Debug running Pods or Nodes by creating a temporary debug container or copying the Pod with modifications.</p>
+</li>
+<li>
+<p><code>kubectl config view</code>: View current kubeconfig settings.</p>
+</li>
+<li>
+<p><code>kubectl config use-context &lt;context_name&gt;</code>: Switch contexts.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Working with YAML Manifests:</strong> Understanding the structure of Kubernetes YAML files for defining objects.</p>
+</li>
+</ul>
+<h2 id="149-helm-basics">14.9: Helm Basics</h2>
+<ul>
+<li>
+<p><strong>Objective:</strong> Get an introduction to Helm as a package manager for Kubernetes.</p>
+</li>
+<li>
+<p><strong>Key Concepts:</strong></p>
+</li>
+<li>
+<p><strong>Basic Helm Commands:</strong></p>
+<ul>
+<li>
+<p><code>helm repo add &lt;repo_name&gt; &lt;repo_url&gt;</code>: Add a chart repository.</p>
+</li>
+<li>
+<p><code>helm repo update</code>: Update information of available charts locally from chart repositories.</p>
+</li>
+<li>
+<p><code>helm search repo &lt;keyword&gt;</code>: Search repositories for a keyword in charts.</p>
+</li>
+<li>
+<p><code>helm install &lt;release_name&gt; &lt;chart_name&gt;</code> (e.g., <code>helm install my-nginx bitnami/nginx</code>): Deploy a chart.</p>
+</li>
+<li>
+<p><code>helm list</code>: List releases.</p>
+</li>
+<li>
+<p><code>helm upgrade &lt;release_name&gt; &lt;chart_name&gt;</code>: Upgrade a release.</p>
+</li>
+<li>
+<p><code>helm uninstall &lt;release_name&gt;</code>: Uninstall a release.</p>
+</li>
+<li>
+<p><code>helm template &lt;release_name&gt; &lt;chart_name&gt;</code>: Locally render templates.</p>
+</li>
+<li>
+<p><code>helm get manifest &lt;release_name&gt;</code>: Display the manifest for a named release (shows all Kubernetes resources deployed by the chart).</p>
+</li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.92b07e13.min.js"></script>
+      
+    
+  </body>
+</html>

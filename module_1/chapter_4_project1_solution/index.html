@@ -1,0 +1,1022 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.18">
+    
+    
+      
+        <title>Chapter 4 Project Solution: Refactored Data Processor (TODO: try to get the original project) - Cloud Engineer course</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7e37652d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-4-project-solution-refactored-data-processor-todo-try-to-get-the-original-project" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Cloud Engineer course" class="md-header__button md-logo" aria-label="Cloud Engineer course" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Cloud Engineer course
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 4 Project Solution: Refactored Data Processor (TODO: try to get the original project)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Cloud Engineer course" class="md-nav__button md-logo" aria-label="Cloud Engineer course" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Cloud Engineer course
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Table of contents
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Module 1 - Advanced Programming & Best Practices
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Module 1 - Advanced Programming & Best Practices
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 - (Python) Language Deep Dive & Idiomatic Code
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            Chapter 1 - (Python) Language Deep Dive & Idiomatic Code
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter_1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Content
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter_1_quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quiz
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter_1_exercise/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Exercises
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter_2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 - Environment, Dependencies & Build Tools
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter_3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 - Testing Strategies
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 - Project - Refactoring & Enhancing an Existing Application
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            Chapter 4 - Project - Refactoring & Enhancing an Existing Application
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter_4_project1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Project 1 - (Pending to Implement)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter_4_project2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Project 2 - Refactoring & Enhancing a Log File Analyzer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Module 5 - Kubernetes & AWS EKS
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Module 5 - Kubernetes & AWS EKS
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../module_5/chapter_14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 14 - Kubernetes Fundamentals
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../module_5/chapter_15/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 15 - Introduction to Amazon EKS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="chapter-4-project-solution-refactored-data-processor-todo-try-to-get-the-original-project">Chapter 4 Project Solution: Refactored Data Processor (TODO: try to get the original project)</h1>
+<p>This document provides a potential solution to the Chapter 4 project, demonstrating refactoring, feature extension, and unit testing based on the concepts covered in Chapter 1.</p>
+<p><strong>1. Refactored and Extended Code (<code>data_processor_refactored.py</code>)</strong></p>
+<p>This version incorporates:</p>
+<ul>
+<li>
+<p>Context managers for file handling.</p>
+</li>
+<li>
+<p>OOP using an <code>Employee</code> class (or <code>namedtuple</code> could also be used).</p>
+</li>
+<li>
+<p>Direct iteration over the CSV reader.</p>
+</li>
+<li>
+<p>Specific error handling (<code>try...except</code>).</p>
+</li>
+<li>
+<p>Logging using the <code>logging</code> module.</p>
+</li>
+<li>
+<p>Calculation of average salary per department.</p>
+</li>
+<li>
+<p>PEP 8 styling and clearer naming.</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># --- Refactored Code ---</span>
+<span class="c1"># (Save this as data_processor_refactored.py)</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">csv</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">defaultdict</span><span class="p">,</span> <span class="n">namedtuple</span>
+
+<span class="c1"># Configure basic logging</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> - </span><span class="si">%(levelname)s</span><span class="s1"> - </span><span class="si">%(message)s</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># Using namedtuple for simple data structure</span>
+<span class="c1"># Alternatively, a full class could be defined with methods if more complexity was needed</span>
+<span class="n">Employee</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s2">&quot;Employee&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;department&quot;</span><span class="p">,</span> <span class="s2">&quot;salary&quot;</span><span class="p">])</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">DataProcessingError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Custom exception for data processing issues.&quot;&quot;&quot;</span>
+    <span class="k">pass</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">parse_employee</span><span class="p">(</span><span class="n">row</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">row_num</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Employee</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parses a single row from the CSV into an Employee object.</span>
+<span class="sd">    Handles potential conversion errors for a single row.</span>
+<span class="sd">    Returns None if parsing fails.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Check for expected number of columns</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">row</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">4</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Incorrect number of columns (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">row</span><span class="p">)</span><span class="si">}</span><span class="s2"> instead of 4)&quot;</span><span class="p">)</span>
+
+        <span class="n">emp_id</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="n">department</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="n">salary</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">name</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">department</span><span class="p">:</span>
+             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Missing name or department&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">salary</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Negative salary&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">Employee</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">emp_id</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">department</span><span class="o">=</span><span class="n">department</span><span class="p">,</span> <span class="n">salary</span><span class="o">=</span><span class="n">salary</span><span class="p">)</span>
+
+    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Skipping row </span><span class="si">{</span><span class="n">row_num</span><span class="si">}</span><span class="s2">: Invalid data format in row </span><span class="si">{</span><span class="n">row</span><span class="si">}</span><span class="s2">. Error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Skipping row </span><span class="si">{</span><span class="n">row_num</span><span class="si">}</span><span class="s2">: Missing columns in row </span><span class="si">{</span><span class="n">row</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">process_employee_data</span><span class="p">(</span><span class="n">filepath</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Reads employee data from a CSV file, calculates aggregate statistics,</span>
+<span class="sd">    and handles potential errors during processing.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        filepath: The path to the employee CSV file.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A dictionary containing processing results:</span>
+<span class="sd">        {</span>
+<span class="sd">            &#39;total_salary&#39;: float,</span>
+<span class="sd">            &#39;highest_earner&#39;: Employee | None,</span>
+<span class="sd">            &#39;average_salary_per_department&#39;: dict[str, float],</span>
+<span class="sd">            &#39;processed_rows&#39;: int,</span>
+<span class="sd">            &#39;skipped_rows&#39;: int</span>
+<span class="sd">        }</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        FileNotFoundError: If the specified filepath does not exist.</span>
+<span class="sd">        DataProcessingError: If the file is empty or contains only headers.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Starting processing for file: </span><span class="si">{</span><span class="n">filepath</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="n">total_salary</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">highest_salary</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span>
+    <span class="n">highest_earner</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">department_stats</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;total_salary&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s2">&quot;count&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">})</span>
+    <span class="n">processed_rows</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">skipped_rows</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Use context manager for safe file handling</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+            <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+
+            <span class="k">try</span><span class="p">:</span>
+                <span class="c1"># Read header safely</span>
+                <span class="n">header</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">reader</span><span class="p">)</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CSV Header: </span><span class="si">{</span><span class="n">header</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="n">processed_rows</span> <span class="o">+=</span> <span class="mi">1</span> <span class="c1"># Count header row conceptually</span>
+            <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">DataProcessingError</span><span class="p">(</span><span class="s2">&quot;File is empty.&quot;</span><span class="p">)</span>
+
+            <span class="c1"># Iterate directly over reader using enumerate for row numbers (starting after header)</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">reader</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span> <span class="c1"># Start row count from 2 for logging</span>
+                <span class="n">employee</span> <span class="o">=</span> <span class="n">parse_employee</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="n">employee</span><span class="p">:</span>
+                    <span class="n">total_salary</span> <span class="o">+=</span> <span class="n">employee</span><span class="o">.</span><span class="n">salary</span>
+                    <span class="n">department_stats</span><span class="p">[</span><span class="n">employee</span><span class="o">.</span><span class="n">department</span><span class="p">][</span><span class="s2">&quot;total_salary&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="n">employee</span><span class="o">.</span><span class="n">salary</span>
+                    <span class="n">department_stats</span><span class="p">[</span><span class="n">employee</span><span class="o">.</span><span class="n">department</span><span class="p">][</span><span class="s2">&quot;count&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+                    <span class="k">if</span> <span class="n">employee</span><span class="o">.</span><span class="n">salary</span> <span class="o">&gt;</span> <span class="n">highest_salary</span><span class="p">:</span>
+                        <span class="n">highest_salary</span> <span class="o">=</span> <span class="n">employee</span><span class="o">.</span><span class="n">salary</span>
+                        <span class="n">highest_earner</span> <span class="o">=</span> <span class="n">employee</span>
+                    <span class="n">processed_rows</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">skipped_rows</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: File not found at </span><span class="si">{</span><span class="n">filepath</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="c1"># Re-raise the exception after logging</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span> <span class="c1"># Catch other potential I/O errors</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;An unexpected error occurred during file processing: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">DataProcessingError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to process file due to: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
+
+    <span class="k">if</span> <span class="n">processed_rows</span> <span class="o">&lt;=</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">skipped_rows</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="c1"># Only header was processed</span>
+         <span class="k">raise</span> <span class="n">DataProcessingError</span><span class="p">(</span><span class="s2">&quot;File contains only headers or is effectively empty.&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Calculate averages</span>
+    <span class="n">average_salary_per_department</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">dept</span><span class="p">,</span> <span class="n">stats</span> <span class="ow">in</span> <span class="n">department_stats</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">stats</span><span class="p">[</span><span class="s2">&quot;count&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">average_salary_per_department</span><span class="p">[</span><span class="n">dept</span><span class="p">]</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">stats</span><span class="p">[</span><span class="s2">&quot;total_salary&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">stats</span><span class="p">[</span><span class="s2">&quot;count&quot;</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+             <span class="n">average_salary_per_department</span><span class="p">[</span><span class="n">dept</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="c1"># Or handle as appropriate</span>
+
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Processing Complete. Processed data rows: </span><span class="si">{</span><span class="n">processed_rows</span><span class="o">-</span><span class="mi">1</span><span class="si">}</span><span class="s2">, Skipped rows: </span><span class="si">{</span><span class="n">skipped_rows</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="c1"># -1 for header</span>
+
+    <span class="n">results</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;total_salary&#39;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">total_salary</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+        <span class="s1">&#39;highest_earner&#39;</span><span class="p">:</span> <span class="n">highest_earner</span><span class="p">,</span>
+        <span class="s1">&#39;average_salary_per_department&#39;</span><span class="p">:</span> <span class="n">average_salary_per_department</span><span class="p">,</span>
+        <span class="s1">&#39;processed_rows&#39;</span><span class="p">:</span> <span class="n">processed_rows</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="c1"># Exclude header</span>
+        <span class="s1">&#39;skipped_rows&#39;</span><span class="p">:</span> <span class="n">skipped_rows</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">results</span>
+
+<span class="c1"># Example Usage (requires &#39;employees.csv&#39;)</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">process_employee_data</span><span class="p">(</span><span class="s1">&#39;employees.csv&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- Processing Results ---&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total Salary Expenditure: $</span><span class="si">{</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;total_salary&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;highest_earner&#39;</span><span class="p">]:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Highest Earner: </span><span class="si">{</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;highest_earner&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> with $</span><span class="si">{</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;highest_earner&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">salary</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Highest Earner: Not found (no valid data).&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Average Salary Per Department:&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">dept</span><span class="p">,</span> <span class="n">avg_salary</span> <span class="ow">in</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;average_salary_per_department&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  - </span><span class="si">{</span><span class="n">dept</span><span class="si">}</span><span class="s2">: $</span><span class="si">{</span><span class="n">avg_salary</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Processed Rows (data): </span><span class="si">{</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;processed_rows&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Skipped Rows: </span><span class="si">{</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;skipped_rows&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="p">(</span><span class="ne">FileNotFoundError</span><span class="p">,</span> <span class="n">DataProcessingError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Processing failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">An unexpected error occurred: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>2. Unit Tests (<code>test_data_processor.py</code>)</strong></p>
+<p>This example uses <code>pytest</code> and <code>unittest.mock</code>. You would need to install them (<code>pip install pytest pytest-mock</code>).</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># --- Unit Tests ---</span>
+<span class="c1"># (Save this as test_data_processor.py in a &#39;tests&#39; subdirectory)</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">unittest.mock</span><span class="w"> </span><span class="kn">import</span> <span class="n">mock_open</span><span class="p">,</span> <span class="n">patch</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">csv</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">io</span>  <span class="c1"># Used for mocking file content</span>
+
+<span class="c1"># Import the refactored function and Employee namedtuple</span>
+<span class="c1"># Assuming the refactored file is in the parent directory or accessible via PYTHONPATH</span>
+<span class="c1"># Adjust the import path as necessary for your project structure</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">data_processor_refactored</span><span class="w"> </span><span class="kn">import</span> <span class="n">process_employee_data</span><span class="p">,</span> <span class="n">Employee</span><span class="p">,</span> <span class="n">DataProcessingError</span>
+
+<span class="c1"># --- Test Data ---</span>
+<span class="n">VALID_CSV_DATA</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;ID,Name,Department,Salary</span>
+<span class="s2">1,Alice,Engineering,90000</span>
+<span class="s2">2,Bob,Sales,80000</span>
+<span class="s2">3,Charlie,Engineering,95000</span>
+<span class="s2">4,David,HR,70000</span>
+<span class="s2">5,Eve,Sales,82000</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">EDGE_CASE_CSV_DATA_INVALID_SALARY</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;ID,Name,Department,Salary</span>
+<span class="s2">1,Alice,Engineering,90000</span>
+<span class="s2">2,Bob,Sales,Eighty Thousand</span>
+<span class="s2">3,Charlie,Engineering,95000</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">EDGE_CASE_CSV_DATA_MISSING_COLUMN</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;ID,Name,Department,Salary</span>
+<span class="s2">1,Alice,Engineering,90000</span>
+<span class="s2">2,Bob,Sales</span>
+<span class="s2">3,Charlie,Engineering,95000</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">EMPTY_CSV_DATA</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="n">HEADER_ONLY_CSV_DATA</span> <span class="o">=</span> <span class="s2">&quot;ID,Name,Department,Salary</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+<span class="c1"># --- Test Fixtures (Optional but good practice with pytest) ---</span>
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">mock_csv_file</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Fixture to mock the open() call and csv.reader.&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_mock_file</span><span class="p">(</span><span class="n">content</span><span class="p">):</span>
+        <span class="c1"># Use io.StringIO to simulate a file object from a string</span>
+        <span class="n">mock_file_obj</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">StringIO</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+        <span class="c1"># Patch &#39;open&#39; in the context of the module being tested</span>
+        <span class="n">m_open</span> <span class="o">=</span> <span class="n">mock_open</span><span class="p">(</span><span class="n">read_data</span><span class="o">=</span><span class="n">content</span><span class="p">)</span>
+        <span class="c1"># We need to make the mock file object behave like an iterator for csv.reader</span>
+        <span class="n">m_open</span><span class="o">.</span><span class="n">return_value</span><span class="o">.</span><span class="fm">__iter__</span> <span class="o">=</span> <span class="k">lambda</span> <span class="bp">self</span><span class="p">:</span> <span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">readline</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="n">m_open</span><span class="o">.</span><span class="n">return_value</span><span class="o">.</span><span class="fm">__next__</span> <span class="o">=</span> <span class="k">lambda</span> <span class="bp">self</span><span class="p">:</span> <span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">readline</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">m_open</span>
+    <span class="k">return</span> <span class="n">_mock_file</span>
+
+<span class="c1"># --- Test Cases ---</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_process_valid_data</span><span class="p">(</span><span class="n">mock_csv_file</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Tests processing with a standard valid CSV.&quot;&quot;&quot;</span>
+    <span class="n">mock_opener</span> <span class="o">=</span> <span class="n">mock_csv_file</span><span class="p">(</span><span class="n">VALID_CSV_DATA</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s1">&#39;builtins.open&#39;</span><span class="p">,</span> <span class="n">mock_opener</span><span class="p">):</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">process_employee_data</span><span class="p">(</span><span class="s1">&#39;dummy_path.csv&#39;</span><span class="p">)</span>
+
+        <span class="k">assert</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;total_salary&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mf">417000.00</span>
+        <span class="k">assert</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;highest_earner&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">Employee</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Charlie&#39;</span><span class="p">,</span> <span class="n">department</span><span class="o">=</span><span class="s1">&#39;Engineering&#39;</span><span class="p">,</span> <span class="n">salary</span><span class="o">=</span><span class="mf">95000.0</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;average_salary_per_department&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="p">{</span>
+            <span class="s1">&#39;Engineering&#39;</span><span class="p">:</span> <span class="mf">92500.00</span><span class="p">,</span>
+            <span class="s1">&#39;Sales&#39;</span><span class="p">:</span> <span class="mf">81000.00</span><span class="p">,</span>
+            <span class="s1">&#39;HR&#39;</span><span class="p">:</span> <span class="mf">70000.00</span>
+        <span class="p">}</span>
+        <span class="k">assert</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;processed_rows&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">5</span>
+        <span class="k">assert</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;skipped_rows&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_process_invalid_salary</span><span class="p">(</span><span class="n">mock_csv_file</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Tests handling of rows with non-numeric salary.&quot;&quot;&quot;</span>
+    <span class="n">mock_opener</span> <span class="o">=</span> <span class="n">mock_csv_file</span><span class="p">(</span><span class="n">EDGE_CASE_CSV_DATA_INVALID_SALARY</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s1">&#39;builtins.open&#39;</span><span class="p">,</span> <span class="n">mock_opener</span><span class="p">):</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">process_employee_data</span><span class="p">(</span><span class="s1">&#39;dummy_path.csv&#39;</span><span class="p">)</span>
+
+        <span class="k">assert</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;total_salary&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mf">185000.00</span> <span class="c1"># Only Alice and Charlie</span>
+        <span class="k">assert</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;highest_earner&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">Employee</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Charlie&#39;</span><span class="p">,</span> <span class="n">department</span><span class="o">=</span><span class="s1">&#39;Engineering&#39;</span><span class="p">,</span> <span class="n">salary</span><span class="o">=</span><span class="mf">95000.0</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;average_salary_per_department&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="p">{</span>
+            <span class="s1">&#39;Engineering&#39;</span><span class="p">:</span> <span class="mf">92500.00</span> <span class="c1"># Average of Alice and Charlie</span>
+            <span class="c1"># Sales department has no valid entries</span>
+        <span class="p">}</span>
+        <span class="k">assert</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;processed_rows&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span>
+        <span class="k">assert</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;skipped_rows&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span> <span class="c1"># Bob&#39;s row skipped</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_process_missing_column</span><span class="p">(</span><span class="n">mock_csv_file</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Tests handling of rows with missing columns.&quot;&quot;&quot;</span>
+    <span class="n">mock_opener</span> <span class="o">=</span> <span class="n">mock_csv_file</span><span class="p">(</span><span class="n">EDGE_CASE_CSV_DATA_MISSING_COLUMN</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s1">&#39;builtins.open&#39;</span><span class="p">,</span> <span class="n">mock_opener</span><span class="p">):</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">process_employee_data</span><span class="p">(</span><span class="s1">&#39;dummy_path.csv&#39;</span><span class="p">)</span>
+
+        <span class="k">assert</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;total_salary&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mf">185000.00</span> <span class="c1"># Alice and Charlie</span>
+        <span class="k">assert</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;highest_earner&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">Employee</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Charlie&#39;</span><span class="p">,</span> <span class="n">department</span><span class="o">=</span><span class="s1">&#39;Engineering&#39;</span><span class="p">,</span> <span class="n">salary</span><span class="o">=</span><span class="mf">95000.0</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;average_salary_per_department&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="p">{</span>
+            <span class="s1">&#39;Engineering&#39;</span><span class="p">:</span> <span class="mf">92500.00</span>
+        <span class="p">}</span>
+        <span class="k">assert</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;processed_rows&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span>
+        <span class="k">assert</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;skipped_rows&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span> <span class="c1"># Bob&#39;s row skipped</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_file_not_found</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Tests FileNotFoundError handling.&quot;&quot;&quot;</span>
+    <span class="c1"># No need to mock open here, we want the actual error</span>
+    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">FileNotFoundError</span><span class="p">):</span>
+        <span class="n">process_employee_data</span><span class="p">(</span><span class="s1">&#39;non_existent_file.csv&#39;</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_empty_file</span><span class="p">(</span><span class="n">mock_csv_file</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Tests processing an empty file.&quot;&quot;&quot;</span>
+    <span class="n">mock_opener</span> <span class="o">=</span> <span class="n">mock_csv_file</span><span class="p">(</span><span class="n">EMPTY_CSV_DATA</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s1">&#39;builtins.open&#39;</span><span class="p">,</span> <span class="n">mock_opener</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="n">DataProcessingError</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="s2">&quot;File is empty&quot;</span><span class="p">):</span>
+            <span class="n">process_employee_data</span><span class="p">(</span><span class="s1">&#39;dummy_path.csv&#39;</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_header_only_file</span><span class="p">(</span><span class="n">mock_csv_file</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Tests processing a file with only a header.&quot;&quot;&quot;</span>
+    <span class="n">mock_opener</span> <span class="o">=</span> <span class="n">mock_csv_file</span><span class="p">(</span><span class="n">HEADER_ONLY_CSV_DATA</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s1">&#39;builtins.open&#39;</span><span class="p">,</span> <span class="n">mock_opener</span><span class="p">):</span>
+         <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="n">DataProcessingError</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="s2">&quot;File contains only headers&quot;</span><span class="p">):</span>
+            <span class="n">process_employee_data</span><span class="p">(</span><span class="s1">&#39;dummy_path.csv&#39;</span><span class="p">)</span>
+
+<span class="c1"># Add more tests:</span>
+<span class="c1"># - Test division by zero if a department has count 0 for average calculation</span>
+<span class="c1"># - Test different data types in columns if applicable</span>
+<span class="c1"># - Test negative salaries if the validation logic changes</span>
+</code></pre></div>
+<p><strong>Setup &amp; Running Tests:</strong></p>
+<ol>
+<li>
+<p>Save the refactored code as <code>data_processor_refactored.py</code>.</p>
+</li>
+<li>
+<p>Create a directory named <code>tests</code>.</p>
+</li>
+<li>
+<p>Save the test code as <code>test_data_processor.py</code> inside the <code>tests</code> directory.</p>
+</li>
+<li>
+<p>Make sure your virtual environment is active.</p>
+</li>
+<li>
+<p>Install necessary packages: <code>pip install pytest pytest-mock</code></p>
+</li>
+<li>
+<p>Navigate to the <em>parent directory</em> of your <code>tests</code> folder in the terminal.</p>
+</li>
+<li>
+<p>Run pytest: <code>pytest</code></p>
+</li>
+</ol>
+<p>This solution provides a solid refactoring incorporating many Chapter 1 concepts and includes basic unit tests to verify functionality and handle edge cases.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.92b07e13.min.js"></script>
+      
+    
+  </body>
+</html>

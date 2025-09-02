@@ -1,0 +1,1135 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../chapter_14/">
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.18">
+    
+    
+      
+        <title>Chapter 15 - Introduction to Amazon EKS - Cloud Engineer course</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7e37652d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-15-introduction-to-amazon-eks" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Cloud Engineer course" class="md-header__button md-logo" aria-label="Cloud Engineer course" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Cloud Engineer course
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 15 - Introduction to Amazon EKS
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Cloud Engineer course" class="md-nav__button md-logo" aria-label="Cloud Engineer course" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Cloud Engineer course
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Table of contents
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Module 1 - Advanced Programming & Best Practices
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Module 1 - Advanced Programming & Best Practices
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Chapter 1 - (Python) Language Deep Dive & Idiomatic Code
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            Chapter 1 - (Python) Language Deep Dive & Idiomatic Code
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../module_1/chapter_1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Content
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../module_1/chapter_1_quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quiz
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../module_1/chapter_1_exercise/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Exercises
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../module_1/chapter_2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 2 - Environment, Dependencies & Build Tools
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../module_1/chapter_3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 3 - Testing Strategies
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Chapter 4 - Project - Refactoring & Enhancing an Existing Application
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            Chapter 4 - Project - Refactoring & Enhancing an Existing Application
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../module_1/chapter_4_project1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Project 1 - (Pending to Implement)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../module_1/chapter_4_project2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Project 2 - Refactoring & Enhancing a Log File Analyzer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Module 5 - Kubernetes & AWS EKS
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Module 5 - Kubernetes & AWS EKS
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter_14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 14 - Kubernetes Fundamentals
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Chapter 15 - Introduction to Amazon EKS
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 15 - Introduction to Amazon EKS
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#151-eks-architecture-deep-dive" class="md-nav__link">
+    <span class="md-ellipsis">
+      15.1: EKS Architecture Deep Dive
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#152-creating-an-eks-cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      15.2: Creating an EKS Cluster
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#153-connecting-to-your-eks-cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      15.3: Connecting to Your EKS Cluster
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#154-eks-pricing-and-cost-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      15.4: EKS Pricing and Cost Management
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#151-eks-architecture-deep-dive" class="md-nav__link">
+    <span class="md-ellipsis">
+      15.1: EKS Architecture Deep Dive
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#152-creating-an-eks-cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      15.2: Creating an EKS Cluster
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#153-connecting-to-your-eks-cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      15.3: Connecting to Your EKS Cluster
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#154-eks-pricing-and-cost-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      15.4: EKS Pricing and Cost Management
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="chapter-15-introduction-to-amazon-eks">Chapter 15: Introduction to Amazon EKS</h1>
+<p><strong>Estimated Time:</strong> 10 hours</p>
+<p><strong>Objective:</strong> Understand Amazon EKS architecture, its benefits, key components, and the initial steps for setting up and interacting with an EKS cluster.</p>
+<h2 id="151-eks-architecture-deep-dive">15.1: EKS Architecture Deep Dive</h2>
+<ul>
+<li>
+<p><strong>Objective:</strong> Understand the fundamental architecture of Amazon EKS, including its managed components, data plane options, and how it integrates with AWS.</p>
+</li>
+<li>
+<p><strong>Key Concepts:</strong></p>
+</li>
+<li>
+<p><strong>Managed Control Plane:</strong></p>
+<ul>
+<li>
+<p>AWS provisions, scales, and manages the Kubernetes control plane components (<code>kube-apiserver</code>, <code>etcd</code>, <code>kube-scheduler</code>, <code>kube-controller-manager</code>).</p>
+</li>
+<li>
+<p>This includes ensuring high availability by default (multi-AZ deployment of control plane instances) and automated patching/upgrades of the control plane.</p>
+</li>
+<li>
+<p>You interact with the control plane via the Kubernetes API endpoint provided by EKS.</p>
+</li>
+<li>
+<p><code>etcd</code> data is automatically encrypted by AWS.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Data Plane Options (Worker Nodes):</strong> Where your Pods run. You have several choices:</p>
+<ul>
+<li>
+<p><strong>Self-Managed EC2 Nodes:</strong></p>
+</li>
+<li>
+<p>You provision and manage EC2 instances that register with the EKS control plane.</p>
+</li>
+<li>
+<p>Full control over instance types, AMIs, operating systems, and patching.</p>
+</li>
+<li>
+<p>Requires more operational overhead for node management, scaling, and upgrades.</p>
+</li>
+<li>
+<p>EKS provides optimized AMIs with necessary components (kubelet, container runtime, AWS IAM Authenticator).</p>
+</li>
+<li>
+<p><strong>Best for scenarios requiring:</strong> Maximum control over node configuration, custom AMIs not easily supported by Managed Node Groups, specific kernel modules, or compliance requirements dictating full OS control. Also suitable if you have existing complex EC2 management automation.</p>
+</li>
+<li>
+<p><strong>Managed Node Groups:</strong></p>
+</li>
+<li>
+<p>Automates the provisioning and lifecycle management of EC2 worker nodes.</p>
+</li>
+<li>
+<p>EKS handles patching, updates, and graceful termination of nodes.</p>
+</li>
+<li>
+<p>Supports custom AMIs, various instance types, and auto-scaling group configurations.</p>
+</li>
+<li>
+<p>Simplifies node operations significantly.</p>
+</li>
+<li>
+<p><strong>Best for scenarios requiring:</strong> A balance of control and automation. Ideal for most workloads where you want to offload node patching and updates to AWS but still need EC2 instance flexibility (e.g., specific instance types, GPU support, custom launch templates for some configurations). This is often the recommended default for EC2-based workloads.</p>
+</li>
+<li>
+<p><strong>AWS Fargate:</strong></p>
+</li>
+<li>
+<p>A serverless compute engine for containers.</p>
+</li>
+<li>
+<p>You don't manage any underlying EC2 instances; AWS provisions and manages the infrastructure per Pod.</p>
+</li>
+<li>
+<p>Pods run in their own isolated compute environment.</p>
+</li>
+<li>
+<p>Ideal for applications with spiky workloads or when you want to minimize infrastructure management.</p>
+</li>
+<li>
+<p>Pricing is based on vCPU and memory resources consumed by your Pods.</p>
+</li>
+<li>
+<p>Fargate Profiles are used to specify which Pods (based on namespace and labels) should run on Fargate.</p>
+</li>
+<li>
+<p><strong>Best for scenarios requiring:</strong> Minimal operational overhead for nodes, applications with variable or unpredictable load (e.g., batch jobs, APIs with infrequent traffic), or when you want per-Pod resource isolation without managing node pools. Good for microservices that can scale independently.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>VPC Integration and Networking Considerations:</strong></p>
+<ul>
+<li>
+<p>EKS clusters run within your Amazon Virtual Private Cloud (VPC).</p>
+</li>
+<li>
+<p>The AWS VPC CNI (Container Network Interface) plugin is used by default, allowing Pods to get IP addresses directly from your VPC subnets. This enables native VPC networking capabilities for Pods.</p>
+</li>
+<li>
+<p>Control plane ENIs (Elastic Network Interfaces) are provisioned in your VPC subnets for communication between the control plane and worker nodes.</p>
+</li>
+<li>
+<p>Understanding subnet requirements (public and private), security group configurations, and NACLs is crucial for cluster security and operation.</p>
+</li>
+<li>
+<p><strong>Subnet Tagging for Load Balancers:</strong> For the AWS Load Balancer Controller to automatically discover and use subnets for provisioning Application Load Balancers (ALBs) or Network Load Balancers (NLBs), specific tags are required:</p>
+</li>
+<li>
+<p>Public subnets (for internet-facing load balancers) need the tag: <code>kubernetes.io/role/elb</code> with value <code>1</code>.</p>
+</li>
+<li>
+<p>Private subnets (for internal load balancers) need the tag: <code>kubernetes.io/role/internal-elb</code> with value <code>1</code>.</p>
+</li>
+<li>
+<p>All subnets used by the EKS cluster (both public and private that will host worker nodes or load balancers) must be tagged with <code>kubernetes.io/cluster/&lt;cluster-name&gt;</code> with a value indicating their lifecycle management:</p>
+<ul>
+<li>
+<p><code>shared</code>: The subnet is used by the cluster but also by other AWS resources. It will not be deleted when the EKS cluster is deleted.</p>
+</li>
+<li>
+<p><code>owned</code>: The subnet is exclusively used by this EKS cluster. Tools like <code>eksctl</code> will delete these subnets when the cluster is deleted.</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="152-creating-an-eks-cluster">15.2: Creating an EKS Cluster</h2>
+<ul>
+<li>
+<p><strong>Objective:</strong> Learn how to provision a new EKS cluster using <code>eksctl</code>.</p>
+</li>
+<li>
+<p><strong>Key Steps &amp; Considerations:</strong></p>
+</li>
+<li>
+<p><strong>Using <code>eksctl create cluster</code>:</strong></p>
+<ul>
+<li>
+<p>The simplest way to get a cluster up and running.</p>
+</li>
+<li>
+<p>Example basic command:</p>
+<pre><code>```
+eksctl create cluster \
+    --name my-eks-cluster \
+    --version 1.29 \
+    --region us-west-2 \
+    --nodegroup-name standard-workers \
+    --node-type t3.medium \
+    --nodes 2 \
+    --nodes-min 1 \
+    --nodes-max 3 \
+    --managed # For managed node groups            
+```
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Key Cluster Configuration Options:</strong></p>
+<ul>
+<li>
+<p><code>--name &lt;cluster-name&gt;</code>: A unique name for your EKS cluster.</p>
+</li>
+<li>
+<p><code>--version &lt;k8s-version&gt;</code>: The Kubernetes version for the control plane (e.g., 1.29, 1.28).</p>
+</li>
+<li>
+<p><code>--region &lt;aws-region&gt;</code>: The AWS region where the cluster will be created.</p>
+</li>
+<li>
+<p><code>--vpc-private-subnets &lt;subnet-ids&gt;</code> &amp; <code>--vpc-public-subnets &lt;subnet-ids&gt;</code>: Specify existing subnets (if not, <code>eksctl</code> can create a new VPC).</p>
+</li>
+<li>
+<p><code>--nodegroup-name &lt;name&gt;</code>: Name for the initial node group.</p>
+</li>
+<li>
+<p><code>--node-type &lt;instance-type&gt;</code>: EC2 instance type for worker nodes.</p>
+</li>
+<li>
+<p><code>--nodes &lt;count&gt;</code>: Desired number of nodes.</p>
+</li>
+<li>
+<p><code>--nodes-min &lt;count&gt;</code> &amp; <code>--nodes-max &lt;count&gt;</code>: For autoscaling node groups.</p>
+</li>
+<li>
+<p><code>--managed</code>: Creates an EKS Managed Node Group. If omitted (or <code>--managed=false</code>), it creates self-managed nodes with an Auto Scaling Group.</p>
+</li>
+<li>
+<p><code>--fargate</code>: Creates a Fargate-only cluster or adds a Fargate profile.</p>
+</li>
+<li>
+<p>Cluster configuration can also be defined in a YAML file and passed to <code>eksctl create cluster -f cluster.yaml</code>.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Cluster Provisioning Time:</strong> Creating an EKS cluster can take 10-20 minutes or more.</p>
+</li>
+<li>
+<p><strong>Verification:</strong></p>
+<ul>
+<li>
+<p>Check <code>eksctl</code> output and AWS CloudFormation console for status.</p>
+</li>
+<li>
+<p>Once complete, use <code>kubectl get svc</code> (to see Kubernetes service) and <code>kubectl get nodes</code> (after configuring kubectl).</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="153-connecting-to-your-eks-cluster">15.3: Connecting to Your EKS Cluster</h2>
+<ul>
+<li>
+<p><strong>Objective:</strong> Configure <code>kubectl</code> to communicate with your newly created EKS cluster.</p>
+</li>
+<li>
+<p><strong>Key Steps:</strong></p>
+</li>
+<li>
+<p><strong>Updating <code>kubeconfig</code>:</strong></p>
+<ul>
+<li>
+<p>The <code>kubeconfig</code> file (<code>~/.kube/config</code> by default) stores cluster connection information and authentication details.</p>
+</li>
+<li>
+<p>Use the AWS CLI command:</p>
+<pre><code>```
+aws eks update-kubeconfig --region &lt;your-region&gt; --name &lt;your-cluster-name&gt;
+```
+
+Example: `aws eks update-kubeconfig --region us-west-2 --name my-eks-cluster`
+</code></pre>
+</li>
+<li>
+<p><code>eksctl</code> often does this automatically after successful cluster creation if AWS CLI is configured.</p>
+</li>
+<li>
+<p>This command typically uses the AWS IAM Authenticator for Kubernetes (or <code>aws eks get-token</code> for newer versions) to generate temporary credentials for <code>kubectl</code>.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Verifying Cluster Connectivity:</strong></p>
+<ul>
+<li>After updating <code>kubeconfig</code>, test the connection:<pre><code>```
+kubectl get nodes
+kubectl cluster-info
+```
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="154-eks-pricing-and-cost-management">15.4: EKS Pricing and Cost Management</h2>
+<ul>
+<li>
+<p><strong>Objective:</strong> Understand the pricing model for EKS and how to manage costs.</p>
+</li>
+<li>
+<p><strong>Key Components of EKS Costs:</strong></p>
+</li>
+<li>
+<p><strong>Control Plane Cost:</strong></p>
+<ul>
+<li>EKS charges an hourly rate per cluster for the managed control plane.</li>
+</ul>
+</li>
+<li>
+<p><strong>Data Plane Costs (Worker Nodes &amp; Resources):</strong></p>
+<ul>
+<li>
+<p><strong>EC2 Instances (Self-Managed or Managed Node Groups):</strong> You pay standard EC2 prices for the instances you run as worker nodes.</p>
+</li>
+<li>
+<p><strong>AWS Fargate:</strong> You pay for the vCPU and memory resources consumed by your Pods running on Fargate, billed per second with a minimum charge.</p>
+</li>
+<li>
+<p><strong>EBS Volumes:</strong> If using PersistentVolumes backed by EBS, you pay standard EBS pricing.</p>
+</li>
+<li>
+<p><strong>Load Balancers:</strong> If you use Services of type <code>LoadBalancer</code>, you pay for the AWS Elastic Load Balancers (Classic, Network, or Application) provisioned.</p>
+</li>
+<li>
+<p><strong>Data Transfer:</strong> Standard AWS data transfer charges apply (e.g., inter-AZ, out to internet).</p>
+</li>
+<li>
+<p><strong>Other AWS Services:</strong> Costs for CloudWatch (logs, metrics), ECR (image storage), etc.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Tips for Cost Optimization:</strong></p>
+<ul>
+<li>
+<p>Choose appropriate EC2 instance types and sizes for your workloads (right-sizing).</p>
+</li>
+<li>
+<p>Utilize EC2 Spot Instances for fault-tolerant workloads in Managed Node Groups or with Karpenter to significantly reduce EC2 costs.</p>
+</li>
+<li>
+<p>Implement cluster autoscaling (Cluster Autoscaler or Karpenter) and Horizontal Pod Autoscaler to scale nodes and Pods based on demand.</p>
+</li>
+<li>
+<p>Use AWS Fargate for suitable workloads to avoid paying for idle EC2 capacity.</p>
+</li>
+<li>
+<p>Monitor costs using AWS Cost Explorer, set up budgets and alerts.</p>
+</li>
+<li>
+<p>Clean up unused resources (EBS volumes, load balancers, old clusters).</p>
+</li>
+<li>
+<p>Consider Reserved Instances or Savings Plans for EC2 compute if you have predictable long-term usage.</p>
+</li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.92b07e13.min.js"></script>
+      
+    
+  </body>
+</html>
